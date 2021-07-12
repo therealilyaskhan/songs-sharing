@@ -13,10 +13,11 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Todo() {
+export default function BuildSong() {
   const classes = useStyles();
 
-  //fetch the checklist of to-dos from api endpoint
+
+  //fetch the todo items from api endpoint
   const todos = [
     {
       taskName: 'Task one',

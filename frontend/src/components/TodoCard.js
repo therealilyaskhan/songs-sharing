@@ -14,13 +14,11 @@ import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    padding: '10px 0px 5px 25px'
+    padding: '10px 0px 5px 25px',
+    borderRadius: 8
   },
   title: {
     fontWeight: 700
-  },
-  card: {
-    borderRadius: 8
   },
   ul: {
     padding: '0px'
@@ -42,6 +40,7 @@ const useStyles = makeStyles({
 export default function TodoCard({ todos }) {
   const classes = useStyles();
 
+
   const todoHandler = (e) => {
     console.log(e.target);
   };
@@ -49,7 +48,6 @@ export default function TodoCard({ todos }) {
   return (
     <Card
       className={classes.root}
-      classes={{ root: classes.card }}
       elevation={3}
     >
       <CardContent>
@@ -62,17 +60,17 @@ export default function TodoCard({ todos }) {
           Tasks
         </Typography>
 
-        <List classes={{ root: classes.ul }}>
+        <List className={classes.ul}>
           {todos.map((todo) => {
             return (
               <ListItem
                 button
                 disableRipple={true}
-                classes={{ root: classes.li }}
+                className={classes.li}
                 key={todo.taskID}
                 onClick={todoHandler}
               >
-                <ListItemIcon classes={{ root: classes.listIcon }}>
+                <ListItemIcon className={classes.listIcon}>
                   <DoneOutlineIcon
                     color="secondary"
                   />
@@ -80,7 +78,7 @@ export default function TodoCard({ todos }) {
                 <ListItemText
                   style={{ paddingLeft: '5px' }}
                   primary={todo.taskName}
-                  classes={{ root: classes.listText }}
+                  className={classes.listText}
                 />
               </ListItem>
             );

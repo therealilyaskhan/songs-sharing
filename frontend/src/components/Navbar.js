@@ -3,7 +3,7 @@ import { Box, makeStyles } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import StyledButton from './StyledButton';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.secondary.main,
       BorderColor: theme.palette.secondary.main,
       color: '#fff',
+      '&:hover': {
+        backgroundColor: theme.palette.secondary.dark
+      }
     }
   }
 }));
@@ -70,15 +73,15 @@ export default function Navbar({ history }) {
           </Typography>
           <Box mb={2} mt={0.5} display="flex" justifyContent='center' width="100%">
             {songBuildSteps.map((step) => (
-              <Button
+              <StyledButton
                 size="large"
                 color="inherit"
                 key={step.name}
-                className={classes.step}
+                customStyles={classes.step}
                 elevation={0}
               >
                 {step.name}
-              </Button>
+              </StyledButton>
             ))
             }
           </Box>

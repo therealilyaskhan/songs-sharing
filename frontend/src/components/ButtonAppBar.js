@@ -3,17 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { Box } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import StyledButton from './StyledButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
@@ -53,20 +50,20 @@ export default function ButtonAppBar() {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={4} classes={{ item: classes.gridItem }}>
-                <Button
-                  fullWidth={xs && !sm ? true : false}
+                <StyledButton
+                  responsive
                   variant="contained"
                   color="secondary"
                   type="submit"
                   style={{ color: '#fff' }}
                 >
                   Add Url
-                </Button>
+                </StyledButton>
               </Grid>
             </Grid>
           </Toolbar>
         </Box>
       </AppBar>
-    </Box>
+    </Box >
   );
 }
