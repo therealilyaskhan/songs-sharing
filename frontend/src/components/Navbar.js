@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     BorderColor: '#000'
   },
-  step: {
+  tab: {
     margin: '0px 10px',
     paddingLeft: '20px',
     paddingRight: '20px',
@@ -33,11 +33,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Navbar({ history }) {
+export default function Navbar({ setActiveTab }) {
   const classes = useStyles();
 
-  //fetch the steps involved in building a song from api endpoint
-  const songBuildSteps = [
+  //fetch the tabs from api endpoint
+  const tabs = [
     {
       name: 'checklist',
       path: '/checklist'
@@ -72,15 +72,16 @@ export default function Navbar({ history }) {
             Build a song
           </Typography>
           <Box mb={2} mt={0.5} display="flex" justifyContent='center' width="100%">
-            {songBuildSteps.map((step) => (
+            {tabs.map((tab) => (
               <StyledButton
                 size="large"
                 color="inherit"
-                key={step.name}
-                customStyles={classes.step}
+                key={tab.name}
+                customStyles={classes.tab}
                 elevation={0}
+                onClick={() => { setActiveTab(tab.name.toLocaleLowerCase()); }}
               >
-                {step.name}
+                {tab.name}
               </StyledButton>
             ))
             }

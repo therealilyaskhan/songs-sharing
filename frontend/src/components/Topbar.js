@@ -3,14 +3,14 @@ import { Box, makeStyles } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import StyledButton from './StyledButton';
 
 const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1
   },
-  TopbarBtn: {
+  topbarBtn: {
     borderWidth: '3px',
     '&:hover': {
       borderWidth: '3px'
@@ -40,14 +40,14 @@ export default function Topbar() {
               XYZ.DEV
             </Link>
           </Typography>
-          <Button
+          <StyledButton
             variant="outlined"
             color="inherit"
-            className={classes.TopbarBtn}
+            customStyles={classes.topbarBtn}
             size="small"
           >
             Login
-          </Button>
+          </StyledButton>
         </Toolbar>
       </AppBar>
     </Box>
