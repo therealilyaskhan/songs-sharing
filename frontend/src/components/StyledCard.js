@@ -8,7 +8,8 @@ const styles = {
   root: {
     padding: '10px 0px 5px 25px',
     borderRadius: 8,
-    marginBottom: '1.25rem'
+    marginBottom: '1.5rem',
+    marginTop: '1.5rem'
   },
 };
 
