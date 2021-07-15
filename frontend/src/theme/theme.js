@@ -12,17 +12,20 @@ const theme = createMuiTheme({
       dark: '#000f1b',
       contrastText: '#f4f4f4'
     },
-    secondary: lightBlue
+    secondary: lightBlue,
+    text: {
+      primary: 'rgba(0, 0, 0, 0.92)'
+    }
   },
   shape: {
     borderRadius: 50
   },
   typography: {
-    fontFamily: 'Quicksand',
-    fontWeightLight: 400,
-    fontWeightRegular: 500,
-    fontWeightMedium: 600,
-    fontWeightBold: 700
+    fontFamily: 'Poppins',
+    fontWeightLight: 200,
+    fontWeightRegular: 300,
+    fontWeightMedium: 400,
+    fontWeightBold: 600
   },
   //overriding the text-transform style rule of the .root class for the MuiButton Component
   overrides: {

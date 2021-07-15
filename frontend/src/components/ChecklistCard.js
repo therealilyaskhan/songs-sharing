@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import StyledCard from './StyledCard';
+import CardContainer from './Card/CardContainer';
 import IWT from './IWT';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -18,6 +18,11 @@ const useStyles = makeStyles({
   },
   ul: {
     padding: '0px'
+  },
+  iwtTextSize: {
+    '& > *': {
+      fontSize: '1.1rem',
+    }
   }
 });
 
@@ -31,7 +36,7 @@ export default function ChecklistCard({ checklist }) {
   };
 
   return (
-    <StyledCard elevation={3}>
+    <CardContainer elevation={3}>
       <CardContent>
         <Typography
           className={classes.title}
@@ -50,6 +55,7 @@ export default function ChecklistCard({ checklist }) {
                 key={task.ID}
                 text={task.name}
                 onClick={checklistHandler}
+                textSizeRule={classes.iwtTextSize}
               >
                 <DoneOutlineIcon
                   color="secondary"
@@ -69,6 +75,6 @@ export default function ChecklistCard({ checklist }) {
           Submit
         </StyledButton>
       </CardActions>
-    </StyledCard>
+    </CardContainer>
   );
 }

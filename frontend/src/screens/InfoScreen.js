@@ -2,7 +2,6 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import InfoCard from '../components/InfoCard';
-import ButtonAppBar from '../components/ButtonAppBar';
 
 
 export default function InfoScreen() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import StyledCard from './StyledCard';
+import CardContainer from './Card/CardContainer';
 import IWT from './IWT';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -20,6 +20,11 @@ const useStyles = makeStyles({
   },
   ul: {
     padding: '0px'
+  },
+  iwtTextSize: {
+    '& > *': {
+      fontSize: '1.1rem',
+    }
   }
 });
 
@@ -28,7 +33,7 @@ export default function InfoCard({ objective, tasks }) {
   const classes = useStyles();
 
   return (
-    <StyledCard elevation={3}>
+    <CardContainer elevation={3}>
       <CardContent classes={{ root: classes['pb-0'] }}>
         <Typography
           className={classes.title}
@@ -59,6 +64,7 @@ export default function InfoCard({ objective, tasks }) {
                 button
                 key={task.ID}
                 text={task.name}
+                textSizeRule={classes.iwtTextSize}
               >
                 <FiberManualRecordIcon classes={{ root: classes.iwt__icon }} fontSize="small" />
               </IWT>
@@ -67,6 +73,6 @@ export default function InfoCard({ objective, tasks }) {
         </List>
 
       </CardContent>
-    </StyledCard>
+    </CardContainer>
   );
 }

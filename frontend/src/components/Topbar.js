@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1
   },
   topbarBtn: {
+    fontWeight: 'bold',
     borderWidth: '3px',
     '&:hover': {
       borderWidth: '3px'
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     color: '#000',
-    textDecoration: 'none'
+    textDecoration: 'none',
   }
 }));
 

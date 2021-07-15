@@ -12,19 +12,18 @@ const styles = {
     minWidth: 'auto'
   },
   listText: {
-    '& > *': {
-      fontSize: '1.1rem'
-    }
+    paddingLeft: 5,
+    marginTop: 3
   }
 };
 
 
 
-function IWT({ classes, text, children, ...other }) {
+function IWT({ classes, text, children, textBold, customStyles, textSizeRule, textWeightRule, ...other }) {
 
   return (
     <ListItem
-      className={classes.li}
+      className={`${classes.li} ${customStyles}`}
       {...other}
       disableRipple={true}
     >
@@ -32,8 +31,8 @@ function IWT({ classes, text, children, ...other }) {
         {children || null}
       </ListItemIcon>
       <ListItemText
-        style={{ paddingLeft: '5px' }}
-        className={classes.listText}
+        className={`${classes.listText} ${textBold ? classes.listTextBold : null} ${textSizeRule} ${textWeightRule}`}
+        classes={{ root: textSizeRule }}
         primary={text}
       />
     </ListItem>

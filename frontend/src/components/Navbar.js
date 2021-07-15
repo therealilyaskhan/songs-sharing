@@ -9,15 +9,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1
   },
-  TopbarBtn: {
-    borderWidth: '3px',
-    '&:hover': {
-      borderWidth: '3px'
-    },
-    backgroundColor: '#000',
-    color: '#fff',
-    BorderColor: '#000'
-  },
   tab: {
     margin: '0px 10px',
     paddingLeft: '20px',
@@ -47,8 +38,8 @@ export default function Navbar({ setActiveTab }) {
       path: '/info'
     },
     {
-      name: 'teams',
-      path: '/teams'
+      name: 'bands',
+      path: '/bands'
     },
     {
       name: 'submission',

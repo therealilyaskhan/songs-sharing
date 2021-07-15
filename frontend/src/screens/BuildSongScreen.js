@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Navbar from '../components/Navbar';
 import ChecklistScreen from './ChecklistScreen';
 import InfoScreen from './InfoScreen';
+import BandScreen from './BandScreen';
 
 const useStyles = makeStyles({
   screen: {
@@ -28,7 +29,9 @@ export default function BuildSong() {
                 <ChecklistScreen /> :
                 activeTab === 'info' ?
                   <InfoScreen /> :
-                  null
+                  activeTab === 'bands' ?
+                    <BandScreen /> :
+                    null
             }
           </Grid>
         </Container>
