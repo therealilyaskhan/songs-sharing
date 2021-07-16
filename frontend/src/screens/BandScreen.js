@@ -26,7 +26,7 @@ export default function BandScreen() {
       owner: 'Kannaj',
       photo: Photo,
       progress: 65,
-      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it.",
+      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       techs: ['Designer', 'Guitar', 'Drums', 'Golang'],
       members: 3
     },
@@ -35,7 +35,7 @@ export default function BandScreen() {
       owner: 'Kannaj',
       photo: Photo,
       progress: 65,
-      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it.",
+      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing.",
       techs: ['Designer', 'Guitar', 'Drums', 'Bass'],
       members: 3
     },
@@ -44,7 +44,7 @@ export default function BandScreen() {
       owner: 'Kannaj',
       photo: Photo,
       progress: 65,
-      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it.",
+      description: "I want to play high on fire with 12 musicians.",
       techs: ['Designer', 'Guitar', 'Drums', 'Golang'],
       members: 3
     },
@@ -75,32 +75,34 @@ export default function BandScreen() {
   return (
 
     <Container>
-      <Grid item xs={12}>
-        <Box my={3} textAlign="right" >
-          <StyledButton
-            elevation={0}
-            responsive
-            variant="contained"
-            color="secondary"
-            type="submit"
-            style={{ color: '#fff' }}
-            onClick={createBandHandler}
-            size="large"
-          >
-            Create Band
-          </StyledButton>
-        </Box>
-      </Grid>
-      <Grid item xs={12}>
-        {
-          bands.map((band) => {
-            return (
-              <BandCard band={band} />
-            );
-          })
-        }
+      <Container>
+        <Grid item xs={12}>
+          <Box my={3} textAlign="right" >
+            <StyledButton
+              elevation={0}
+              responsive
+              variant="contained"
+              color="secondary"
+              type="submit"
+              style={{ color: '#fff' }}
+              onClick={createBandHandler}
+              size="large"
+            >
+              Create Band
+            </StyledButton>
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          {
+            bands.map((band) => {
+              return (
+                <BandCard band={band} />
+              );
+            })
+          }
 
-      </Grid>
+        </Grid>
+      </Container>
     </Container>
 
   );

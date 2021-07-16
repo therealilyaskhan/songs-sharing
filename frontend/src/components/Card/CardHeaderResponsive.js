@@ -6,23 +6,14 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = (theme) => ({
   content: {
     display: 'flex',
-    flexDirection: 'column',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     paddingRight: 0,
+    paddingBottom: 12,
     '& > *': {
-      paddingBottom: theme.spacing(4)
-    },
-    "& > :first-child": {
-      paddingBottom: theme.spacing(2)
+      paddingBottom: theme.spacing(1.5)
     }
   },
-  padding0: {
-    paddingBottom: 0,
-    "& > :last-child": {
-      paddingBottom: 0
-    }
-  }
 });
 
 function CardContentResponsive(props) {
@@ -31,7 +22,6 @@ function CardContentResponsive(props) {
     <CardContent
       className={`${classes.content} ${customStyles}`}
       {...other}
-      classes={{ root: classes.padding0 }}
     >
       {children}
     </CardContent>

@@ -14,7 +14,7 @@ const theme = createMuiTheme({
     },
     secondary: lightBlue,
     text: {
-      primary: 'rgba(0, 0, 0, 0.92)'
+      primary: 'rgba(0, 0, 0, 0.95)'
     }
   },
   shape: {
@@ -25,7 +25,10 @@ const theme = createMuiTheme({
     fontWeightLight: 200,
     fontWeightRegular: 300,
     fontWeightMedium: 400,
-    fontWeightBold: 600
+    fontWeightBold: 600,
+    body2: {
+      fontSize: '0.92rem'
+    }
   },
   //overriding the text-transform style rule of the .root class for the MuiButton Component
   overrides: {

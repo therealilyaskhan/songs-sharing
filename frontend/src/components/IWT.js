@@ -12,8 +12,7 @@ const styles = {
     minWidth: 'auto'
   },
   listText: {
-    paddingLeft: 5,
-    marginTop: 3
+    paddingLeft: 5
   }
 };
 
