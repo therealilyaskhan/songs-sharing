@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     fill: "#000",
     fontSize: '1.7rem'
   },
+  iwtIconExpand: {
+    fontSize: '2rem'
+  },
   joinBtn: {
     padding: '4px 18px',
   },
@@ -93,6 +96,7 @@ export default function BandCard({ band }) {
   const tabletCard = useMediaQuery('(max-width:800px)');
   const ipadCard = useMediaQuery('(max-width:740px)');
   const mobileCard = useMediaQuery('(max-width:640px)');
+  const xsCard = useMediaQuery('(max-width:470px)');
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -126,6 +130,8 @@ export default function BandCard({ band }) {
         <Box
           display="flex"
           alignItems="center"
+          flexWrap={xsCard && 'wrap'}
+          justifyContent={xsCard && 'center'}
         >
           <Box
             alignSelf="center"
@@ -143,7 +149,11 @@ export default function BandCard({ band }) {
             flexWrap={mobileCard ? "wrap" : ""}
             alignSelf={(ipadCard && !mobileCard) && "stretch"}
             alignItems={(ipadCard && !mobileCard) && "center"}
-            ml={(mobileCard) ? 3.5 : 0}
+            flexBasis={xsCard && "100%"}
+            ml={(mobileCard && !xsCard) ? 3.5 : 0}
+            mt={xsCard && 3.5}
+            justifyContent={xsCard && 'center'}
+            textAlign={xsCard && 'center'}
           >
             <Box
               display="flex"
@@ -193,10 +203,11 @@ export default function BandCard({ band }) {
               </Box>
             </Box>
             <Box
-              mr={0.85}
+              mr={!xsCard && 0.85}
+              mt={xsCard && 1.8}
               flexGrow={0}
               alignSelf="flex-start"
-              flexBasis={mobileCard && '100%'}
+              flexBasis={(mobileCard && !xsCard) && '100%'}
             >
               <IWT
                 button
@@ -209,37 +220,48 @@ export default function BandCard({ band }) {
             </Box>
           </Box>
         </Box>
-        <Box mb="auto" mr={ipadCard ? 0 : 14}>
+        <Box
+          mb="auto"
+          mr={ipadCard ? 0 : 14}
+          mt={(ipadCard && !xsCard) && 1}
+          textAlign={xsCard && 'justify'}
+        >
           <Typography variant="body2" color="textPrimary">
             {description}
           </Typography>
         </Box>
         {
           (tabletCard && !ipadCard) || mobileCard ?
-            <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Box display="flex"
+              justifyContent={xsCard ? "center" : "space-between"}
+              alignItems="center"
+              flexWrap={xsCard && 'wrap'}
+            >
               <IWT
                 customStyles={classes.widthAuto}
               >
                 <IconButton
+                  color="primary"
                   className={`${classes.expand} ${expanded ? classes.expandOpen : ''}`}
                   onClick={handleExpandClick}
                   aria-expanded={expanded}
                   aria-label="show more"
                 >
-                  <ExpandMoreIcon classes={{ root: classes.iwtIcon }} />
+                  <ExpandMoreIcon classes={{ root: classes.iwtIconExpand }} />
                 </IconButton>
               </IWT>
 
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <Box display="flex">
                   <Box
-                    ml={2}
+                    ml={!xsCard && 2}
                     mt={0.45}
-                    mr={4}
+                    mr={!xsCard && 4}
                     flexGrow={1}
                     flexShrink={1}
                     display="flex"
                     flexWrap="wrap"
+                    justifyContent={xsCard && 'center'}
                   >
                     {techs.map((tech) => {
                       return (
@@ -263,8 +285,15 @@ export default function BandCard({ band }) {
                   </Box>
                 </Box>
               </Collapse>
-              <Box textAlign="right">
+
+              <Box
+                textAlign="right"
+                flexBasis={xsCard && '100%'}
+                order={xsCard && '-1'}
+                mb={xsCard && 1}
+              >
                 <StyledButton
+                  fullWidth={xsCard && true}
                   elevation={0}
                   responsive
                   variant="contained"
@@ -336,7 +365,7 @@ export default function BandCard({ band }) {
         }
 
       </CardContentResponsive>
-    </CardContainer>
+    </CardContainer >
   );
 }
 
