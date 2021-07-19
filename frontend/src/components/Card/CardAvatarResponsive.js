@@ -1,28 +1,26 @@
 import React from 'react';
-import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 // We can inject some CSS into the DOM.
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   large: {
-    width: theme.spacing(15.5),
-    height: theme.spacing(15.5)
+    width: props => theme.spacing(props.size) || theme.spacing(15.5),
+    height: props => theme.spacing(props.size) || theme.spacing(15.5)
   },
   avatar: {
     alignSelf: 'center'
   }
-});
+}));
 
-function CardAvatarResponsive(props) {
-  const { classes, children, customStyles, ...other } = props;
+export default function CardAvatarResponsive(props) {
+  const classes = useStyles(props);
+  const { children, customStyles, centered, ...other } = props;
   return (
     <Avatar
-      className={`${classes.large} ${classes.avatar} ${customStyles}`}
+      className={`${classes.large} ${centered && classes.avatar} ${customStyles}`}
       {...other}
     />
   );
 }
-
-export default withStyles(styles)(CardAvatarResponsive);

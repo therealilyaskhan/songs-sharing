@@ -1,9 +1,9 @@
 import React from 'react';
 import CardContent from '@material-ui/core/CardContent';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   content: {
     display: 'flex',
     flexDirection: 'column',
@@ -11,10 +11,10 @@ const styles = (theme) => ({
     flexWrap: 'wrap',
     paddingRight: 0,
     '& > *': {
-      paddingBottom: theme.spacing(4)
+      paddingBottom: theme.spacing(2)
     },
     "& > :first-child": {
-      paddingBottom: theme.spacing(2)
+      paddingBottom: theme.spacing(1)
     }
   },
   padding0: {
@@ -23,10 +23,12 @@ const styles = (theme) => ({
       paddingBottom: 0
     }
   }
-});
+}));
 
-function CardContentResponsive(props) {
-  const { classes, children, customStyles, ...other } = props;
+
+export default function CardContentResponsive(props) {
+  const classes = useStyles(props);
+  const { children, customStyles, ...other } = props;
   return (
     <CardContent
       className={`${classes.content} ${customStyles}`}
@@ -37,5 +39,3 @@ function CardContentResponsive(props) {
     </CardContent>
   );
 }
-
-export default withStyles(styles)(CardContentResponsive);

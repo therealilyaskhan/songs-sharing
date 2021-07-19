@@ -1,10 +1,10 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 // We can inject some CSS into the DOM.
-const styles = {
+const useStyles = makeStyles((theme) => ({
   root: {
     padding: '10px 25px 10px 25px',
     borderRadius: 10,
@@ -14,10 +14,11 @@ const styles = {
   'd-flex': {
     display: 'flex',
   }
-};
+}));
 
-function CardContainer(props) {
-  const { classes, children, customStyles, responsive, ...other } = props;
+export default function CardContainer(props) {
+  const classes = useStyles(props);
+  const { children, customStyles, responsive, ...other } = props;
   return (
     <Card
       className={`${classes.root} ${customStyles} ${responsive ? classes['d-flex'] : ''}`}
@@ -27,5 +28,3 @@ function CardContainer(props) {
     </Card >
   );
 }
-
-export default withStyles(styles)(CardContainer);

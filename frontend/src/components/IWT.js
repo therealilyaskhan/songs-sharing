@@ -1,10 +1,10 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
-const styles = {
+const useStyles = makeStyles((theme) => ({
   li: {
     padding: '0px'
   },
@@ -14,11 +14,15 @@ const styles = {
   listText: {
     paddingLeft: 5
   }
-};
+}));
 
 
 
-function IWT({ classes, text, children, textBold, customStyles, textSizeRule, textWeightRule, ...other }) {
+export default function IWT(props) {
+
+  const { text, children, textBold, customStyles, textSizeRule, textWeightRule, ...other } = props;
+
+  const classes = useStyles(props);
 
   return (
     <ListItem
@@ -30,12 +34,9 @@ function IWT({ classes, text, children, textBold, customStyles, textSizeRule, te
         {children || null}
       </ListItemIcon>
       <ListItemText
-        className={`${classes.listText} ${textBold ? classes.listTextBold : null} ${textSizeRule} ${textWeightRule}`}
-        classes={{ root: textSizeRule }}
+        className={`${classes.listText} ${textSizeRule} ${textWeightRule}`}
         primary={text}
       />
     </ListItem>
   );
 }
-
-export default withStyles(styles)(IWT);

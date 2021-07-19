@@ -1,16 +1,19 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
+
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import Box from '@material-ui/core/Box';
+
 import CardContainer from './Card/CardContainer';
 import CardAvatarResponsive from './Card/CardAvatarResponsive';
 import CardContentResponsive from './Card/CardContentResponsive';
 import IWT from './IWT';
 import StyledButton from './StyledButton';
+
 import PersonIcon from '@material-ui/icons/Person';
-import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
@@ -97,7 +100,6 @@ export default function BandCard({ band }) {
   const joinBandHandler = (e) => {
     console.log('band joined!!');
   };
-
   const techHandler = (e) => {
     console.log('tech created!!');
   };
@@ -116,8 +118,10 @@ export default function BandCard({ band }) {
           src={photo}
           alt="band photo"
           aria-label="band photo"
+          size={17}
         />
       </Box>
+
       <CardContentResponsive customStyles={ipadCard ? classes.pr0 : classes.bandDetails}>
         <Box
           display="flex"
@@ -215,7 +219,7 @@ export default function BandCard({ band }) {
         <Box
           mb="auto"
           mr={ipadCard ? 0 : 14}
-          mt={(ipadCard && !xsCard) && 1}
+          mt={(ipadCard && !xsCard) && 1.5}
           textAlign={xsCard && 'justify'}
         >
           <Typography variant="body2" color="textPrimary">

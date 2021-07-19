@@ -1,9 +1,9 @@
 import React from 'react';
 import CardContent from '@material-ui/core/CardContent';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 
-const styles = {
+const useStyles = makeStyles((theme) => ({
   content: {
     display: 'flex',
     flexDirection: 'column',
@@ -18,10 +18,11 @@ const styles = {
       paddingBottom: 12
     }
   },
-};
+}));
 
-function CardControlsResponsive(props) {
-  const { classes, children, customStyles, ...other } = props;
+export default function CardControlsResponsive(props) {
+  const classes = useStyles(props);
+  const { children, customStyles, ...other } = props;
   return (
     <CardContent
       className={`${classes.content} ${customStyles}`}
@@ -31,5 +32,3 @@ function CardControlsResponsive(props) {
     </CardContent>
   );
 }
-
-export default withStyles(styles)(CardControlsResponsive);
