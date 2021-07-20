@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // We can inject some CSS into the DOM.
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: '10px 25px 10px 25px',
+    padding: props => props.px && props.py ? `${props.px}px ${props.py}px` : '10px 25px',
     borderRadius: 10,
     marginBottom: '1.5rem',
     marginTop: '1.5rem'

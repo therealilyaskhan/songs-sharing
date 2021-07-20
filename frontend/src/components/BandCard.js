@@ -18,8 +18,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    minHeight: 180,
-    padding: '10px 40px 10px 40px',
+    minHeight: 180
   },
   flexItem1: {
     flex: '1 0 auto',
@@ -108,6 +107,8 @@ export default function BandCard({ band }) {
     <CardContainer
       responsive
       elevation={3}
+      px={10}
+      py={40}
       customStyles={classes.card}
     >
       <Box
@@ -126,8 +127,8 @@ export default function BandCard({ band }) {
         <Box
           display="flex"
           alignItems="center"
-          flexWrap={xsCard && 'wrap'}
-          justifyContent={xsCard && 'center'}
+          flexWrap={xsCard ? 'wrap' : 'no-wrap'}
+          {...xsCard ? { justifyContent: 'center' } : {}}
         >
           <Box
             alignSelf="center"
@@ -142,14 +143,14 @@ export default function BandCard({ band }) {
           <Box
             display="flex"
             flexGrow={1}
-            flexWrap={mobileCard ? "wrap" : ""}
-            alignSelf={(ipadCard && !mobileCard) && "stretch"}
-            alignItems={(ipadCard && !mobileCard) && "center"}
-            flexBasis={xsCard && "100%"}
+            flexWrap={mobileCard ? "wrap" : "no-wrap"}
+            {... (ipadCard && !mobileCard) ? { alignSelf: 'stretch' } : {}}
+            {... (ipadCard && !mobileCard) ? { alignItems: 'center' } : {}}
+            {...xsCard ? { flexBasis: '100%' } : {}}
             ml={(mobileCard && !xsCard) ? 3.5 : 0}
-            mt={xsCard && 3.5}
-            justifyContent={xsCard && 'center'}
-            textAlign={xsCard && 'center'}
+            {...xsCard ? { mt: 3.5 } : {}}
+            {...xsCard ? { justifyContent: 'center' } : {}}
+            {...xsCard ? { textAlign: 'center' } : {}}
           >
             <Box
               display="flex"
@@ -158,12 +159,12 @@ export default function BandCard({ band }) {
               flexGrow={2}
               mr={ipadCard ? 0 : 6}
               ml={(ipadCard && !mobileCard) ? 3.5 : 0}
-              flexBasis={ipadCard && '100%'}
+              {...ipadCard ? { flexBasis: '100%' } : {}}
             >
               <Box
                 mr={ipadCard ? 0 : 4}
                 flexGrow={ipadCard ? 0 : 1}
-                flexBasis={ipadCard && '100%'}
+                {...ipadCard ? { flexBasis: '100%' } : {}}
               >
                 <Typography
                   className={classes.textBolder}
@@ -181,7 +182,7 @@ export default function BandCard({ band }) {
               </Box>
               <Box
                 flexGrow={ipadCard ? 0 : 1}
-                flexBasis={ipadCard && '100%'}
+                {...ipadCard ? { flexBasis: '100%' } : {}}
               >
                 <Typography
                   className={classes.textBolder}
@@ -199,11 +200,11 @@ export default function BandCard({ band }) {
               </Box>
             </Box>
             <Box
-              mr={!xsCard && 0.85}
-              mt={xsCard && 1.8}
               flexGrow={0}
               alignSelf="flex-start"
-              flexBasis={(mobileCard && !xsCard) && '100%'}
+              {...!xsCard ? { mr: 0.85 } : {}}
+              {...xsCard ? { mt: 1.8 } : {}}
+              {... (mobileCard && !xsCard) ? { flexBasis: '100%' } : {}}
             >
               <IWT
                 button
@@ -219,8 +220,8 @@ export default function BandCard({ band }) {
         <Box
           mb="auto"
           mr={ipadCard ? 0 : 14}
-          mt={(ipadCard && !xsCard) && 1.5}
-          textAlign={xsCard && 'justify'}
+          {...(ipadCard && !xsCard) ? { mt: 1.5 } : {}}
+          {...xsCard ? { textAlign: 'justify' } : {}}
         >
           <Typography variant="body2" color="textPrimary">
             {description}
@@ -231,7 +232,7 @@ export default function BandCard({ band }) {
             <Box display="flex"
               justifyContent={xsCard ? "center" : "space-between"}
               alignItems="center"
-              flexWrap={xsCard && 'wrap'}
+              flexWrap={xsCard ? 'wrap' : 'no-wrap'}
             >
               <IWT
                 customStyles={classes.widthAuto}
@@ -250,18 +251,22 @@ export default function BandCard({ band }) {
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <Box display="flex">
                   <Box
-                    ml={!xsCard && 2}
+                    {...!xsCard ? { ml: 2 } : {}}
+                    {...!xsCard ? { mr: 4 } : {}}
+                    {...xsCard ? { justifyContent: 'center' } : {}}
                     mt={0.45}
-                    mr={!xsCard && 4}
                     flexGrow={1}
                     flexShrink={1}
                     display="flex"
                     flexWrap="wrap"
-                    justifyContent={xsCard && 'center'}
                   >
                     {techs.map((tech) => {
                       return (
-                        <Box mr={1} pb={1.1}>
+                        <Box
+                          key={tech}
+                          mr={1}
+                          pb={1.1}
+                        >
                           <StyledButton
                             disableRipple
                             disableFocusRipple
@@ -270,7 +275,6 @@ export default function BandCard({ band }) {
                             variant="outlined"
                             onClick={techHandler}
                             size="small"
-                            key={tech}
                             customStyles={classes.techButton}
                           >
                             {tech}
@@ -284,12 +288,12 @@ export default function BandCard({ band }) {
 
               <Box
                 textAlign="right"
-                flexBasis={xsCard && '100%'}
-                order={xsCard && '-1'}
-                mb={xsCard && 1}
+                {...xsCard ? { flexBasis: '100%' } : {}}
+                {...xsCard ? { order: '-1' } : {}}
+                {...xsCard ? { mb: 1 } : {}}
               >
                 <StyledButton
-                  fullWidth={xsCard && true}
+                  fullWidth={xsCard ? true : false}
                   elevation={0}
                   responsive
                   variant="contained"
@@ -324,7 +328,11 @@ export default function BandCard({ band }) {
               >
                 {techs.map((tech) => {
                   return (
-                    <Box mr={1} pb={1.1}>
+                    <Box
+                      key={tech}
+                      mr={1}
+                      pb={1.1}
+                    >
                       <StyledButton
                         disableRipple
                         disableFocusRipple
@@ -333,7 +341,6 @@ export default function BandCard({ band }) {
                         variant="outlined"
                         onClick={techHandler}
                         size="small"
-                        key={tech}
                         customStyles={classes.techButton}
                       >
                         {tech}

@@ -96,7 +96,9 @@ export default function BandScreen() {
           {
             bands.map((band) => {
               return (
-                <BandCard band={band} />
+                <BandCard
+                  key={band.ID}
+                  band={band} />
               );
             })
           }
