@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function CardContainer(props) {
+const CardContainer = React.forwardRef((props, ref) => {
   const classes = useStyles(props);
   const { children, customStyles, responsive, ...other } = props;
   return (
@@ -27,4 +27,6 @@ export default function CardContainer(props) {
       {children}
     </Card >
   );
-}
+});
+
+export default CardContainer;

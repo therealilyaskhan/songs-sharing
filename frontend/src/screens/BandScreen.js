@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import BandCard from '../components/BandCard';
 import StyledButton from '../components/StyledButton';
 import Photo from '../assets/images/band__photo.jpg';
+import TransitionsModal from '../components/TransitionsModal';
 
 
 export default function BandScreen() {
@@ -75,21 +76,27 @@ export default function BandScreen() {
   return (
 
     <Container>
+
       <Container>
         <Grid item xs={12}>
           <Box my={3} textAlign="right" >
-            <StyledButton
-              elevation={0}
-              responsive
-              variant="contained"
-              color="secondary"
-              type="submit"
-              style={{ color: '#fff' }}
-              onClick={createBandHandler}
-              size="large"
+            <TransitionsModal
+              modalOpener={
+                <StyledButton
+                  elevation={0}
+                  responsive
+                  variant="contained"
+                  color="secondary"
+                  type="button"
+                  style={{ color: '#fff' }}
+                  size="large"
+                >
+                  Create Band
+                </StyledButton>
+              }
             >
-              Create Band
-            </StyledButton>
+              <h2>Transition modal</h2>
+            </TransitionsModal>
           </Box>
         </Grid>
         <Grid item xs={12}>
