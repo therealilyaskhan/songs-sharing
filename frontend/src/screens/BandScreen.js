@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -6,7 +6,15 @@ import BandCard from '../components/BandCard';
 import StyledButton from '../components/StyledButton';
 import Photo from '../assets/images/band__photo.jpg';
 import TransitionsModal from '../components/TransitionsModal';
+import { makeStyles, TextField, Typography } from '@material-ui/core';
 
+const useStyles = makeStyles({
+  field: {
+    marginTop: 20,
+    marginBottom: 20,
+    display: 'block'
+  }
+});
 
 export default function BandScreen() {
 
@@ -69,8 +77,26 @@ export default function BandScreen() {
     },
   ];
 
+  const classes = useStyles();
+  const [title, setTitle] = useState('');
+  const [details, setDetails] = useState('');
+  const [titleError, setTitleError] = useState(false);
+  const [detailsError, setDetailsError] = useState(false);
+
   const createBandHandler = (e) => {
-    console.log('band created!!');
+    e.preventDefault();
+    setTitleError(false);
+    setDetailsError(false);
+
+    if (title === '') {
+      setTitleError(true);
+    }
+    if (details === '') {
+      setDetailsError(true);
+    }
+    if (title && details) {
+      console.log(title, details);
+    }
   };
 
   return (
@@ -79,9 +105,9 @@ export default function BandScreen() {
 
       <Container>
         <Grid item xs={12}>
-          <Box my={3} textAlign="right" >
-            <TransitionsModal
-              modalOpener={
+          <TransitionsModal
+            modalOpener={
+              <Box my={3} textAlign="right" >
                 <StyledButton
                   elevation={0}
                   responsive
@@ -93,11 +119,61 @@ export default function BandScreen() {
                 >
                   Create Band
                 </StyledButton>
-              }
+              </Box>
+            }
+          >
+            <Typography
+              variant="h5"
+              color="textPrimary"
+              component="h2"
             >
-              <h2>Transition modal</h2>
-            </TransitionsModal>
-          </Box>
+              <Box fontWeight="fontWeightBold">
+                Create a new band
+              </Box>
+            </Typography>
+
+            <form noValidate autoComplete="off" onSubmit={createBandHandler}>
+              <TextField
+                className={classes.field}
+                onChange={(e) => setDetails(e.target.value)}
+                label="Description:"
+                InputLabelProps={{ shrink: true }}
+                variant="outlined"
+                color="secondary"
+                multiline
+                rows={4}
+                fullWidth
+                required
+                error={detailsError}
+              />
+              <TextField
+                className={classes.field}
+                onChange={(e) => setTitle(e.target.value)}
+                label="Tech Stack:"
+                InputLabelProps={{ shrink: true }}
+                variant="outlined"
+                color="secondary"
+                fullWidth
+                required
+                error={titleError}
+              />
+
+              <Box textAlign="center" >
+                <StyledButton
+                  elevation={0}
+                  responsive
+                  variant="contained"
+                  color="secondary"
+                  type="submit"
+                  style={{ color: '#fff' }}
+                  size="large"
+                >
+                  Create
+                </StyledButton>
+              </Box>
+            </form>
+
+          </TransitionsModal>
         </Grid>
         <Grid item xs={12}>
           {

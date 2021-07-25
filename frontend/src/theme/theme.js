@@ -14,11 +14,8 @@ const theme = createMuiTheme({
     },
     secondary: lightBlue,
     text: {
-      primary: 'rgba(0, 0, 0, 0.95)'
+      primary: '#011627'
     }
-  },
-  shape: {
-    borderRadius: 50
   },
   typography: {
     fontFamily: 'Poppins',

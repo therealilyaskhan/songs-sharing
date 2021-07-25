@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '1px solid #707070'
+    border: '1px solid rgba(0,0,0,0.23)'
   },
 }));
 
@@ -46,13 +46,14 @@ export default function TransitionsModal({ children, modalOpener }) {
         BackdropProps={{
           timeout: 500,
           style: {
-            backgroundColor: 'rgba(255, 255, 255, 0.62)'
+            backgroundColor: 'rgba(255, 255, 255, 0.52)',
+            backdropFilter: 'blur(2px)'
           }
         }}
       >
         <Fade in={open}>
           <CardContainer
-            elevation={3}
+            elevation={0}
             customStyles={classes.paper}
           >
             <CardContent>

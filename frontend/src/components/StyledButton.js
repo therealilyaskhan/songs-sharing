@@ -7,7 +7,7 @@ import { useMediaQuery } from '@material-ui/core';
 // We can inject some CSS into the DOM.
 const useStyles = makeStyles((theme) => ({
   root: {
-    //define custom styles here to alter the look of standard MUI Button Component
+    borderRadius: 50
   },
 }));
 
@@ -21,7 +21,7 @@ export default function StyledButton(props) {
 
   const StyledButton = (
     <Button
-      className={`${customStyles}`}
+      className={`${customStyles} ${root}`}
       {...other}
       fullWidth={fullWidth ? true : responsive ? (xs && sm) ? true : false : false}
     >
@@ -33,7 +33,7 @@ export default function StyledButton(props) {
     return (
       <Box textAlign={responsive && (md && lg) ? 'center' : ''}>
         <Button
-          className={`${customStyles}`}
+          className={`${customStyles} ${root}`}
           {...other}
           fullWidth={fullWidth ? true : responsive ? (xs && sm) ? true : false : false}
         >
