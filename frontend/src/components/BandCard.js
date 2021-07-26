@@ -107,8 +107,10 @@ export default function BandCard({ band }) {
     <CardContainer
       responsive
       elevation={3}
-      px={10}
-      py={40}
+      pr={40}
+      pl={40}
+      pt={10}
+      pb={10}
       customStyles={classes.card}
     >
       <Box
@@ -123,7 +125,9 @@ export default function BandCard({ band }) {
         />
       </Box>
 
-      <CardContentResponsive customStyles={ipadCard ? classes.pr0 : classes.bandDetails}>
+      <CardContentResponsive
+        customStyles={ipadCard ? classes.pr0 : classes.bandDetails}
+      >
         <Box
           display="flex"
           alignItems="center"
@@ -294,7 +298,7 @@ export default function BandCard({ band }) {
               >
                 <StyledButton
                   fullWidth={xsCard ? true : false}
-                  elevation={0}
+                  disableElevation
                   responsive
                   variant="contained"
                   color="secondary"
@@ -351,7 +355,7 @@ export default function BandCard({ band }) {
               </Box>
               <Box alignSelf="flex-end">
                 <StyledButton
-                  elevation={0}
+                  disableElevation
                   responsive
                   variant="contained"
                   color="secondary"

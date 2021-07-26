@@ -6,13 +6,22 @@ import BandCard from '../components/BandCard';
 import StyledButton from '../components/StyledButton';
 import Photo from '../assets/images/band__photo.jpg';
 import TransitionsModal from '../components/TransitionsModal';
-import { makeStyles, TextField, Typography } from '@material-ui/core';
+import { makeStyles, TextField, Typography, useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles({
   field: {
     marginTop: 20,
     marginBottom: 20,
-    display: 'block'
+    display: 'block',
+    "& fieldset": {
+      borderRadius: 12
+    }
+  },
+  createBand: {
+    fontSize: '0.875rem',
+    fontWeight: 500,
+    padding: '10px 20px',
+    minWidth: '9.2rem'
   }
 });
 
@@ -82,6 +91,7 @@ export default function BandScreen() {
   const [details, setDetails] = useState('');
   const [titleError, setTitleError] = useState(false);
   const [detailsError, setDetailsError] = useState(false);
+  const xl = useMediaQuery('(min-width:1281px)');
 
   const createBandHandler = (e) => {
     e.preventDefault();
@@ -106,20 +116,22 @@ export default function BandScreen() {
       <Container>
         <Grid item xs={12}>
           <TransitionsModal
+            fullWidth
+            maxWidth={xl ? 'lg' : 'md'}
+            aria-labelledby="create-band-modal"
+            aria-describedby="provide-your-band-description-and-tech-stack-to-create-your-band"
             modalOpener={
-              <Box my={3} textAlign="right" >
-                <StyledButton
-                  elevation={0}
-                  responsive
-                  variant="contained"
-                  color="secondary"
-                  type="button"
-                  style={{ color: '#fff' }}
-                  size="large"
-                >
-                  Create Band
-                </StyledButton>
-              </Box>
+              <StyledButton
+                disableElevation
+                responsive
+                variant="contained"
+                color="secondary"
+                type="button"
+                style={{ color: '#fff' }}
+                size="large"
+              >
+                Create Band
+              </StyledButton>
             }
           >
             <Typography
@@ -127,12 +139,15 @@ export default function BandScreen() {
               color="textPrimary"
               component="h2"
             >
-              <Box fontWeight="fontWeightBold">
+              <Box textAlign='center' fontWeight="fontWeightBold" mb={5}>
                 Create a new band
               </Box>
             </Typography>
 
-            <form noValidate autoComplete="off" onSubmit={createBandHandler}>
+            <form
+              noValidate autoComplete="off"
+              onSubmit={createBandHandler}
+            >
               <TextField
                 className={classes.field}
                 onChange={(e) => setDetails(e.target.value)}
@@ -141,7 +156,7 @@ export default function BandScreen() {
                 variant="outlined"
                 color="secondary"
                 multiline
-                rows={4}
+                rows={7}
                 fullWidth
                 required
                 error={detailsError}
@@ -160,7 +175,8 @@ export default function BandScreen() {
 
               <Box textAlign="center" >
                 <StyledButton
-                  elevation={0}
+                  customStyles={classes.createBand}
+                  disableElevation
                   responsive
                   variant="contained"
                   color="secondary"

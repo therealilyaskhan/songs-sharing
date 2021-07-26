@@ -65,11 +65,11 @@ export default function Navbar({ setActiveTab }) {
           <Box mb={2} mt={0.5} display="flex" justifyContent='center' width="100%">
             {tabs.map((tab) => (
               <StyledButton
+                disableElevation
                 size="large"
                 color="inherit"
                 key={tab.name}
                 customStyles={classes.tab}
-                elevation={0}
                 onClick={() => { setActiveTab(tab.name.toLocaleLowerCase()); }}
               >
                 {tab.name}
