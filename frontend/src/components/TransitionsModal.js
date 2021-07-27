@@ -43,9 +43,11 @@ export default function TransitionsModal(props) {
   const [open, setOpen] = useState(false);
   const xs = useMediaQuery('(max-width:444px)');
   const sm = useMediaQuery('(max-width:600px)');
-  const md = useMediaQuery('(max-width:740px)');
-  const lg = useMediaQuery('(max-width:960px)');
-  const xl = useMediaQuery('(min-width:960px)');
+  const md = useMediaQuery('(max-width:680px)');
+  const lg = useMediaQuery('(max-width:840px)');
+  const xl = useMediaQuery('(max-width:975px)');
+
+  const px = xs ? 20 : sm ? 30 : md ? 35 : lg ? 40 : xl ? 50 : 60;
 
   const handleOpen = () => {
     setOpen(true);
@@ -85,8 +87,8 @@ export default function TransitionsModal(props) {
             <CardContent
               pt={12}
               pb={12}
-              pr={60}
-              pl={60}
+              pr={px}
+              pl={px}
             >
               {children}
             </CardContent>

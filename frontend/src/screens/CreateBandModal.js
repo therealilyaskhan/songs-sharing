@@ -19,26 +19,27 @@ const useStyles = makeStyles({
 export default function CreateBandModal() {
 
   const classes = useStyles();
-  const [title, setTitle] = useState('');
-  const [details, setDetails] = useState('');
-  const [titleError, setTitleError] = useState(false);
-  const [detailsError, setDetailsError] = useState(false);
+  const [techStack, setTechStack] = useState('');
+  const [description, setDescription] = useState('');
+  const [techStackError, setTechStackError] = useState(false);
+  const [descriptionError, setDescriptionError] = useState(false);
+  const xs = useMediaQuery('(max-width:444px)');
   const xl = useMediaQuery('(min-width:1367px)');
 
-  //form submission and api calls goes here
+  //form submission validation and api calls goes here
   const createBandHandler = (e) => {
     e.preventDefault();
-    setTitleError(false);
-    setDetailsError(false);
+    setTechStackError(false);
+    setDescriptionError(false);
 
-    if (title === '') {
-      setTitleError(true);
+    if (techStack === '') {
+      setTechStackError(true);
     }
-    if (details === '') {
-      setDetailsError(true);
+    if (description === '') {
+      setDescriptionError(true);
     }
-    if (title && details) {
-      console.log(title, ' and ', details, ' submitted');
+    if (techStack && description) {
+      console.log(techStack, ' and ', description, ' submitted');
     }
   };
 
@@ -68,7 +69,12 @@ export default function CreateBandModal() {
         color="textPrimary"
         component="h2"
       >
-        <Box textAlign='center' fontWeight="fontWeightBold" mb={5}>
+        <Box
+          {...xs ? { fontSize: 21 } : {}}
+          textAlign='center'
+          fontWeight="fontWeightBold"
+          mb={5}
+        >
           Create a new band
         </Box>
       </Typography>
@@ -82,8 +88,7 @@ export default function CreateBandModal() {
           bc='#858585'
           mb={25}
           customStyles={classes.field}
-          onChange={(e) => setDetails(e.target.value)}
-          value={details}
+          onChange={(e) => setDescription(e.target.value)}
           label="Description:"
           variant="outlined"
           color="secondary"
@@ -91,21 +96,20 @@ export default function CreateBandModal() {
           rows={7}
           fullWidth
           required
-          error={detailsError}
+          error={descriptionError}
         />
         <FormTextField
           br={12}
           bc='#858585'
           customStyles={classes.field}
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
+          onChange={(e) => setTechStack(e.target.value)}
           label="Tech Stack:"
           variant="outlined"
           color="secondary"
           fullWidth
           multiline
           required
-          error={titleError}
+          error={techStackError}
         />
 
         <Box textAlign="center" >
