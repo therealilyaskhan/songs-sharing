@@ -8,9 +8,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Topbar />
         <Switch>
           <Route path="/build">
+            <Topbar />
             <BuildSongScreen />
           </Route>
         </Switch>

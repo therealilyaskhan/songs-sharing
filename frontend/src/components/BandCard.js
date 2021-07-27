@@ -11,7 +11,7 @@ import CardContainer from './Card/CardContainer';
 import CardAvatarResponsive from './Card/CardAvatarResponsive';
 import CardContentResponsive from './Card/CardContentResponsive';
 import IWT from './IWT';
-import StyledButton from './StyledButton';
+import StyledButton from './controls/StyledButton';
 
 import PersonIcon from '@material-ui/icons/Person';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';

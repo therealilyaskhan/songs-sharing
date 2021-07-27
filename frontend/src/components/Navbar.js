@@ -3,7 +3,7 @@ import { Box, makeStyles } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import StyledButton from './StyledButton';
+import StyledButton from './controls/StyledButton';
 
 const useStyles = makeStyles((theme) => ({
   title: {

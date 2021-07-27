@@ -1,7 +1,7 @@
 import { Box, makeStyles, Typography, useMediaQuery } from '@material-ui/core';
 import React, { useState } from 'react';
-import FormTextField from '../components/FormTextField';
-import StyledButton from '../components/StyledButton';
+import FormTextField from '../components/controls/FormTextField';
+import StyledButton from '../components/controls/StyledButton';
 import TransitionsModal from '../components/TransitionsModal';
 
 const useStyles = makeStyles({

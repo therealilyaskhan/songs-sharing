@@ -5,7 +5,7 @@ import IWT from './IWT';
 import CardContent from './Card/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
-import StyledButton from './StyledButton';
+import StyledButton from './controls/StyledButton';
 import List from '@material-ui/core/List';
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 
