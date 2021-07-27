@@ -33,6 +33,19 @@ const theme = createMuiTheme({
       root: {
         textTransform: 'capitalize'
       }
+    },
+    MuiOutlinedInput: {
+      root: {
+        "& $notchedOutline > legend": {
+          fontSize: "0.85rem"
+        },
+        "&:hover $notchedOutline > legend": {
+          fontSize: "0.85rem"
+        },
+        "&$focused $notchedOutline > legend": {
+          fontSize: "0.85rem"
+        }
+      }
     }
   },
   props: {

@@ -23,7 +23,7 @@ export default function CreateBandModal() {
   const [details, setDetails] = useState('');
   const [titleError, setTitleError] = useState(false);
   const [detailsError, setDetailsError] = useState(false);
-  const xl = useMediaQuery('(min-width:1281px)');
+  const xl = useMediaQuery('(min-width:1367px)');
 
   //form submission and api calls goes here
   const createBandHandler = (e) => {
@@ -79,11 +79,12 @@ export default function CreateBandModal() {
       >
         <FormTextField
           br={12}
+          bc='#858585'
+          mb={25}
           customStyles={classes.field}
           onChange={(e) => setDetails(e.target.value)}
           value={details}
           label="Description:"
-          InputLabelProps={{ shrink: true }}
           variant="outlined"
           color="secondary"
           multiline
@@ -93,15 +94,16 @@ export default function CreateBandModal() {
           error={detailsError}
         />
         <FormTextField
-          customStyles={classes.field}
           br={12}
+          bc='#858585'
+          customStyles={classes.field}
           onChange={(e) => setTitle(e.target.value)}
           value={title}
           label="Tech Stack:"
-          InputLabelProps={{ shrink: true }}
           variant="outlined"
           color="secondary"
           fullWidth
+          multiline
           required
           error={titleError}
         />
