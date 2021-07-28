@@ -2,7 +2,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { lightBlue } from '@material-ui/core/colors';
 
 // const original = createMuiTheme();
-// original.shadows.splice(4, 1, '5px 0px 16px -3px rgba(0,0,0,0.47);');
+// original.shadows.splice(4, 1, '8px -4px 30px rgba(0, 0, 0, 0.19)');
 
 const theme = createMuiTheme({
   palette: {

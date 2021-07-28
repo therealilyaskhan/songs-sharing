@@ -14,7 +14,7 @@ export default function SubmissionScreen() {
       photo: Photo,
       owner: 'Kannaj',
       members: ['Kannaj', 'Linus torvalds'],
-      completedOn: '21 june 2021',
+      completedOn: '2011-04-11',
       techs: ['Designer', 'Guitar', 'Drums', 'Bass', 'Piano']
     },
     {
@@ -22,7 +22,7 @@ export default function SubmissionScreen() {
       photo: Photo,
       owner: 'Kannaj',
       members: ['Kannaj', 'Linus torvalds'],
-      completedOn: '21 june 2021',
+      completedOn: '2012-05-11',
       techs: ['Designer', 'Guitar', 'Drums', 'Golang']
     },
     {
@@ -30,7 +30,7 @@ export default function SubmissionScreen() {
       photo: Photo,
       owner: 'Kannaj',
       members: ['Kannaj', 'Linus torvalds'],
-      completedOn: '21 june 2021',
+      completedOn: '2011-04-14',
       techs: ['Designer', 'Guitar', 'Drums', 'Bass']
     },
     {
@@ -38,7 +38,7 @@ export default function SubmissionScreen() {
       photo: Photo,
       owner: 'Kannaj',
       members: ['Kannaj', 'Linus torvalds'],
-      completedOn: '21 june 2021',
+      completedOn: '2021-07-28',
       techs: ['Designer', 'Guitar', 'Drums', 'Golang']
     },
     {
@@ -46,7 +46,7 @@ export default function SubmissionScreen() {
       photo: Photo,
       owner: 'Kannaj',
       members: ['Kannaj', 'Linus torvalds'],
-      completedOn: '21 june 2021',
+      completedOn: '2020-04-04',
       techs: ['Designer', 'Guitar', 'Drums', 'Golang']
     },
     {
@@ -54,14 +54,14 @@ export default function SubmissionScreen() {
       photo: Photo,
       owner: 'Kannaj',
       members: ['Kannaj', 'Linus torvalds'],
-      completedOn: '21 june 2021',
+      completedOn: '2011-04-11',
       techs: ['Designer', 'Guitar', 'Drums', 'Bass']
     },
   ];
 
   return (
 
-    <Container>
+    <Container style={{ paddingTop: '2rem' }}>
 
       <Container>
         <Grid item xs={12}>

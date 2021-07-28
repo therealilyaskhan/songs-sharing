@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
 
@@ -10,7 +11,6 @@ import Box from '@material-ui/core/Box';
 import CardContainer from './Card/CardContainer';
 import CardAvatarResponsive from './Card/CardAvatarResponsive';
 import CardContentResponsive from './Card/CardContentResponsive';
-import IWT from './IWT';
 import StyledButton from './controls/StyledButton';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -19,25 +19,11 @@ const useStyles = makeStyles((theme) => ({
   card: {
     minHeight: 180
   },
-  flexItem1: {
-    flex: '1 0 auto',
-    marginRight: '2rem'
-  },
-  flexItem2: {
-    flex: '4 0 auto',
-  },
-  flexItem3: {
-    flex: '2 0 100%'
-  },
-  iwtIcon: {
-    fill: "#000",
-    fontSize: '1.7rem'
-  },
   iwtIconExpand: {
     fontSize: '2rem'
   },
   viewBtn: {
-    padding: '4px 18px',
+    padding: '6px 16px',
   },
   songDetails: {
     paddingLeft: 40,
@@ -56,16 +42,6 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 15,
     minWidth: '5.2rem'
   },
-  iwtTextSize: {
-    '& > *': {
-      fontSize: '1.185rem',
-    }
-  },
-  iwtTextWeight: {
-    '& > *': {
-      fontWeight: 500
-    }
-  },
   expand: {
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', {
@@ -78,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   expandMoreIcon: {
     width: 'auto'
   },
-  pr0: {
+  pl0: {
     paddingLeft: 0
   }
 }));
@@ -130,7 +106,7 @@ export default function SongCard({ song }) {
 
       {/* last section and is a col flex container*/}
       <CardContentResponsive
-        customStyles={ipadCard ? classes.pr0 : classes.songDetails}
+        customStyles={ipadCard ? classes.pl0 : classes.songDetails}
       >
         {/* first in the col / top strip */}
         <Box
@@ -178,7 +154,8 @@ export default function SongCard({ song }) {
                 display='inline'
                 variant="subtitle2"
               >
-                {'  ' + owner}
+                {!mobileCard ? <>&nbsp;&nbsp;</> : ''}
+                {owner}
               </Typography>
             </Box>
 
@@ -199,7 +176,8 @@ export default function SongCard({ song }) {
                 display='inline'
                 variant="subtitle2"
               >
-                {'  ' + members}
+                {!mobileCard ? <>&nbsp;&nbsp;</> : ''}
+                {members.join(' , ')}
               </Typography>
             </Box>
 
@@ -218,7 +196,8 @@ export default function SongCard({ song }) {
                 display='inline'
                 variant="subtitle2"
               >
-                {'  ' + completedOn}
+                {!mobileCard ? <>&nbsp;&nbsp;</> : ''}
+                {moment(new Date(completedOn)).format("Do MMMM, dddd, YYYY")}
               </Typography>
             </Box>
 
@@ -237,60 +216,68 @@ export default function SongCard({ song }) {
             >
 
               <Box
+                display='flex'
+                alignItems={mobileCard && !xsCard ? 'flex-start' : 'center'}
+                flexDirection={mobileCard ? 'column' : 'row'}
                 {...xsCard ? {} : { flexGrow: 6 }}
                 flexShrink={1}
               >
-                <IconButton
-                  color="primary"
-                  className={`${classes.expand} ${expanded ? classes.expandOpen : ''}`}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon classes={{ root: classes.iwtIconExpand }} />
-                </IconButton>
-              </Box>
-
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <Box
-                  display="flex"
-                  {...xsCard ? { mb: 1 } : {}}
+                  flexGrow={0}
+                  {...mobileCard && !xsCard ? { marginLeft: '2.5rem' } : {}}
                 >
-                  <Box
-                    {...!xsCard ? { ml: 1 } : {}}
-                    {...!xsCard ? { mr: 4 } : {}}
-                    {...xsCard ? { justifyContent: 'center' } : {}}
-                    mt={0.45}
-                    flexGrow={1}
-                    flexShrink={1}
-                    display="flex"
-                    flexWrap="wrap"
+                  <IconButton
+                    color="primary"
+                    className={`${classes.expand} ${expanded ? classes.expandOpen : ''}`}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more"
                   >
-                    {techs.map((tech) => {
-                      return (
-                        <Box
-                          key={tech}
-                          mr={1}
-                          pb={1.1}
-                        >
-                          <StyledButton
-                            disableRipple
-                            disableFocusRipple
-                            disableElevation
-                            elevation={0}
-                            variant="outlined"
-                            onClick={techHandler}
-                            size="small"
-                            customStyles={classes.techButton}
-                          >
-                            {tech}
-                          </StyledButton>
-                        </Box>
-                      );
-                    })}
-                  </Box>
+                    <ExpandMoreIcon classes={{ root: classes.iwtIconExpand }} />
+                  </IconButton>
                 </Box>
-              </Collapse>
+
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                  <Box
+                    display="flex"
+                    {...xsCard ? { mb: 1 } : {}}
+                  >
+                    <Box
+                      {...!xsCard ? { ml: 0.9 } : {}}
+                      {...!xsCard ? { mr: 3.5 } : {}}
+                      {...xsCard ? { justifyContent: 'center' } : {}}
+                      mt={0.45}
+                      flexGrow={1}
+                      flexShrink={1}
+                      display="flex"
+                      flexWrap="wrap"
+                    >
+                      {techs.map((tech) => {
+                        return (
+                          <Box
+                            key={tech}
+                            mr={1}
+                            pb={1.1}
+                          >
+                            <StyledButton
+                              disableRipple
+                              disableFocusRipple
+                              disableElevation
+                              elevation={0}
+                              variant="outlined"
+                              onClick={techHandler}
+                              size="small"
+                              customStyles={classes.techButton}
+                            >
+                              {tech}
+                            </StyledButton>
+                          </Box>
+                        );
+                      })}
+                    </Box>
+                  </Box>
+                </Collapse>
+              </Box>
 
               <Box
                 flexShrink={0}
@@ -306,7 +293,7 @@ export default function SongCard({ song }) {
                   variant="contained"
                   color="secondary"
                   type="submit"
-                  size="large"
+                  size={mobileCard ? "medium" : "large"}
                   style={{ color: '#fff' }}
                   onClick={viewSongHandler}
                   customStyles={classes.viewBtn}
@@ -371,7 +358,7 @@ export default function SongCard({ song }) {
                   variant="contained"
                   color="secondary"
                   type="submit"
-                  size="large"
+                  size={mobileCard ? "medium" : "large"}
                   style={{ color: '#fff' }}
                   onClick={viewSongHandler}
                   customStyles={classes.viewBtn}
