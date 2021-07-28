@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import ChecklistScreen from './ChecklistScreen';
 import InfoScreen from './InfoScreen';
 import BandScreen from './BandScreen';
+import SubmissionScreen from './SubmissionsScreen';
 
 const useStyles = makeStyles({
   screen: {
@@ -31,7 +32,9 @@ export default function BuildSong() {
                   <InfoScreen /> :
                   activeTab === 'bands' ?
                     <BandScreen /> :
-                    null
+                    activeTab === 'submission' ?
+                      <SubmissionScreen /> :
+                      null
             }
           </Grid>
         </Container>

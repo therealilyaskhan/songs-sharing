@@ -1,21 +1,21 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import BandCard from '../components/BandCard';
+import SongCard from '../components/SongCard';
 import Photo from '../assets/images/band__photo.jpg';
 
 export default function SubmissionScreen() {
 
 
-  //fetch submission name, submission photo URi, submission members, submission completion-on date and other submission info from api endpoint
-  const submissions = [
+  //fetch submitted songs name, photo URi, members, completed song's completion-on date and other submission info from api endpoint
+  const submittedSongs = [
     {
       ID: '1',
       photo: Photo,
       owner: 'Kannaj',
       members: ['Kannaj', 'Linus torvalds'],
       completedOn: '21 june 2021',
-      techs: ['Designer', 'Guitar', 'Drums', 'Bass']
+      techs: ['Designer', 'Guitar', 'Drums', 'Bass', 'Piano']
     },
     {
       ID: '2',
@@ -66,11 +66,11 @@ export default function SubmissionScreen() {
       <Container>
         <Grid item xs={12}>
           {
-            submissions.map((submission) => {
+            submittedSongs.map((song) => {
               return (
-                <BandCard
-                  key={submission.ID}
-                  submission={submission} />
+                <SongCard
+                  key={song.ID}
+                  song={song} />
               );
             })
           }

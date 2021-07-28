@@ -6,15 +6,16 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   content: {
     display: 'flex',
+    flexGrow: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     paddingRight: 0,
     '& > *': {
-      paddingBottom: theme.spacing(2)
+      paddingBottom: 16
     },
     "& > :first-child": {
-      paddingBottom: theme.spacing(1)
+      paddingBottom: 8
     }
   },
   padding0: {
