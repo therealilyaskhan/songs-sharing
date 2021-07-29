@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BandCard({ band }) {
-  const { ID, owner, photo, progress, description, techs, members } = band;
+  const { owner, photo, progress, description, techs, members } = band;
   const classes = useStyles();
   const tabletCard = useMediaQuery('(max-width:800px)');
   const ipadCard = useMediaQuery('(max-width:740px)');
@@ -121,7 +121,7 @@ export default function BandCard({ band }) {
           src={photo}
           alt="band photo"
           aria-label="band photo"
-          size={17}
+          size={136}
         />
       </Box>
 

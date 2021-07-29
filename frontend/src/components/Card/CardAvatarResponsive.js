@@ -5,9 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // We can inject some CSS into the DOM.
 const useStyles = makeStyles((theme) => ({
-  large: {
-    width: props => theme.spacing(props.size) || theme.spacing(15.5),
-    height: props => theme.spacing(props.size) || theme.spacing(15.5)
+  size: {
+    width: props => props.size || 124,
+    height: props => props.size || 124
   },
   avatar: {
     alignSelf: 'center'
@@ -19,7 +19,7 @@ export default function CardAvatarResponsive(props) {
   const { children, customStyles, centered, ...other } = props;
   return (
     <Avatar
-      className={`${classes.large} ${centered && classes.avatar} ${customStyles}`}
+      className={`${classes.size} ${centered && classes.avatar} ${customStyles}`}
       {...other}
     />
   );

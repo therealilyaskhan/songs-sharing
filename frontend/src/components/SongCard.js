@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SongCard({ song }) {
-  const { ID, photo, owner, members, completedOn, techs } = song;
+  const { photo, owner, members, completedOn, techs } = song;
   const classes = useStyles();
 
   const tabletCard = useMediaQuery('(max-width:820px)');
@@ -100,7 +100,7 @@ export default function SongCard({ song }) {
           src={photo}
           alt="song photo"
           aria-label="song photo"
-          size={17}
+          size={136}
         />
       </Box>
 

@@ -7,10 +7,13 @@ import UserSkillsScreen from '../screens/UserSkillsScreen';
 import UserSongsScreen from '../screens/UserSongsScreen';
 import UserProfileDrawer from '../components/UserProfileDrawer';
 
+import Image from '../assets/images/band__photo.jpg';
+
 const useStyles = makeStyles({
-  screen: {
-    backgroundColor: "#f9f9f9",
-    width: "100%"
+  root: {
+    backgroundColor: "#F7F7F7",
+    width: "100%",
+    display: 'flex'
   }
 });
 
@@ -18,11 +21,19 @@ export default function BuildSong() {
   const classes = useStyles();
   const [activeLink, setActiveLink] = useState('skills');
 
+  //fetch user name, user photo URi, username etc
+  const user = {
+    photo: Image,
+    fullName: 'David Gilmour'
+  };
+
   return (
     <>
-      <div className={classes.screen}>
-        {/* pass sidenav with user object and nav links and a lifting state up callback */}
-        <UserProfileDrawer setActiveLink={setActiveLink} />
+      <div div className={classes.root}>
+        <UserProfileDrawer
+          user={user}
+          setActiveLink={setActiveLink}
+        />
         <Container>
           <Grid container>
             {
