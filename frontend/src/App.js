@@ -3,6 +3,7 @@ import BuildSongScreen from './screens/BuildSongScreen';
 import { ThemeProvider } from '@material-ui/core/styles';
 import Topbar from './components/Topbar';
 import UserProfileLayout from './layout/UserProfileLayout';
+import ChatRoomLayout from './layout/ChatRoomLayout';
 import theme from './theme/theme';
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
           <Route path="/profile">
             <Topbar />
             <UserProfileLayout />
+          </Route>
+          <Route path="/rooms">
+            <ChatRoomLayout />
           </Route>
         </Switch>
       </Router>
