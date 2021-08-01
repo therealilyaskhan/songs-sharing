@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, makeStyles } from '@material-ui/core';
+import { Box, makeStyles, useMediaQuery } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -20,35 +20,56 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: '#000',
     textDecoration: 'none',
+  },
+  topbarXs: {
+    textAlign: 'center',
+    '&:before': {
+      content: '""',
+      flexGrow: 1,
+      flexBasis: 0,
+      opacity: 0,
+      visibility: 'hidden'
+    },
+    '& > :last-child': {
+      flexGrow: 1,
+      flexBasis: 0,
+      textAlign: 'right'
+    }
   }
 }));
 
-export default function Topbar() {
+export default function Topbar({ responsive }) {
   const classes = useStyles();
+  const xs = useMediaQuery('(max-width:599.95px)');
+
   return (
-    <Box mx={5}>
+    <Box mx={xs ? 2.5 : 5}>
       <AppBar
         position="static"
         elevation={0}
         color="transparent"
       >
-        <Toolbar>
+        <Toolbar
+          {...xs && responsive ? { className: `${classes.topbarXs}` } : {}}
+        >
           <Typography variant="h6" className={classes.title}>
             <Link
-              to='/todo'
+              to='/build'
               className={classes.link}
             >
               XYZ.DEV
             </Link>
           </Typography>
-          <StyledButton
-            variant="outlined"
-            color="inherit"
-            customStyles={classes.topbarBtn}
-            size="small"
-          >
-            Login
-          </StyledButton>
+          <Box>
+            <StyledButton
+              variant="outlined"
+              color="inherit"
+              customStyles={classes.topbarBtn}
+              size="small"
+            >
+              Login
+            </StyledButton>
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>
