@@ -7,11 +7,12 @@ import ChatRoomBody from '../components/ChatRoomBody';
 import ChatRoomFooter from '../components/ChatRoomFooter';
 
 export default function ChatRoomScreen({ selectedChatRoom }) {
+
   return (
-    <Box>
-      <ChatRoomHeader></ChatRoomHeader>
-      <ChatRoomBody></ChatRoomBody>
-      <ChatRoomFooter></ChatRoomFooter>
+    <Box width='100%'>
+      <ChatRoomHeader chatRoomID={selectedChatRoom} />
+      <ChatRoomBody chatRoomID={selectedChatRoom} />
+      <ChatRoomFooter charRoomID={selectedChatRoom} />
     </Box>
   );
-}
+};;;;;;;;

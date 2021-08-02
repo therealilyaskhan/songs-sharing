@@ -9,13 +9,15 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Box, Divider } from '@material-ui/core';
+import { Typography, Box, Divider, useMediaQuery } from '@material-ui/core';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   homeLink: {
     color: '#fff',
+    fontWeight: 400,
+    fontSize: '1.6rem',
     textDecoration: 'none',
   },
   link: {
@@ -33,8 +35,9 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
     position: 'absolute',
-    top: 64,
+    top: 12,
     left: 20,
+    zIndex: 1200
   },
   drawerPaper: {
     width: drawerWidth,
@@ -47,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
   listItemText: {
     marginTop: 0,
-    marginBottom: 0,
+    marginBottom: 0
   },
   divider: {
     backgroundColor: 'rgba(255, 255, 255, 0.10);'
@@ -66,6 +69,7 @@ export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
 
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const xs = useMediaQuery('(max-width:599.95px)');
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -107,13 +111,14 @@ export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
                     />
                   </ListItem>
                   {
-                    chatRooms[category].map((chatRoom) => {
+                    chatRooms[category].map(({ ID, name }) => {
                       return (
                         <ListItem
-                          key={chatRoom}
+                          key={ID}
                           onClick={() => {
-                            setSelectedChatRoom(chatRoom.toLocaleLowerCase());
-                            handleDrawerToggle();
+                            setSelectedChatRoom(ID);
+                            if (xs)
+                              handleDrawerToggle();
                           }}
                           button
                           classes={{
@@ -125,7 +130,7 @@ export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
                             classes={{
                               primary: classes.link
                             }}
-                            primary={`# ${chatRoom}`} />
+                            primary={`# ${name}`} />
                         </ListItem>
                       );
                     })

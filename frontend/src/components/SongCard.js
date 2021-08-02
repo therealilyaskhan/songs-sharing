@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bolder'
   },
   techButton: {
-    fontSize: theme.spacing(1.5),
+    fontSize: 12,
     backgroundColor: 'rgba(0, 0, 0, 0.04)',
     paddingLeft: 15,
     paddingRight: 15,

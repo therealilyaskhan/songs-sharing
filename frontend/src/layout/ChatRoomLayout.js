@@ -18,10 +18,36 @@ export default function BuildSong() {
   const classes = useStyles();
   const [selectedChatRoom, setSelectedChatRoom] = useState('');
 
-  //fetch the names of public and band rooms from api endpoint:
+  //fetch the the list of rooms api endpoint:
   const chatRooms = {
-    public: ['General', 'Feedback', 'Project ideas'],
-    Band: ['Make a beatles cover', 'All rock', 'Pop']
+    public: [
+      {
+        ID: 1,
+        name: 'General'
+      },
+      {
+        ID: 2,
+        name: 'Feedback'
+      },
+      {
+        ID: 3,
+        name: 'Project ideas'
+      }
+    ],
+    band: [
+      {
+        ID: 4,
+        name: 'Make a beatles cover'
+      },
+      {
+        ID: 5,
+        name: 'All rock'
+      },
+      {
+        ID: 6,
+        name: 'Pop'
+      }
+    ]
   };
 
   return (
