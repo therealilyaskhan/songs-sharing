@@ -9,14 +9,18 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { Typography, Box, Divider } from '@material-ui/core';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
-  link: {
-    color: '#000',
+  homeLink: {
+    color: '#fff',
     textDecoration: 'none',
+  },
+  link: {
+    color: '#fff',
+    fontSize: '0.92rem'
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -24,59 +28,41 @@ const useStyles = makeStyles((theme) => ({
       flexShrink: 0,
     },
   },
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
   menuButton: {
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
-    position: 'fixed',
+    position: 'absolute',
     top: 64,
     left: 20,
   },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: '#000'
   },
-  desktopDrawer: {
-    border: 0,
-    backgroundColor: '#F7F7F7'
+  roomCategory: {
+    fontSize: '0.97rem',
+    color: '#0F94EC',
+    textTransform: 'capitalize'
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
+  listItemText: {
+    marginTop: 0,
+    marginBottom: 0,
   },
+  divider: {
+    backgroundColor: 'rgba(255, 255, 255, 0.10);'
+  },
+  roomsList: {
+    flexGrow: 1
+  },
+  listItemButton: {
+    '&:hover, :focus': {
+      backgroundColor: 'rgba(255, 255, 255, 0.15);'
+    }
+  }
 }));
 
 export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
-
-  let drawerItems = Object.keys(chatRooms).map((category) => {
-
-    return (
-      <>
-        <div>{category}</div>
-        {
-          chatRooms[category].map((chatRoom) => {
-            return (
-              <ListItem onClick={() => {
-                setSelectedChatRoom(chatRoom.toLocaleLowerCase());
-              }}
-                button key={chatRoom}
-              >
-                <ListItemText primary={`# ${chatRoom}`} />
-              </ListItem>
-            );
-          })
-        }
-      </>
-    );
-
-  });
 
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -86,20 +72,77 @@ export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
   };
 
   const drawer = (
-    <div>
-      <Typography variant="h6">
-        <Link
-          to='/build'
-          className={classes.link}
-        >
-          XYZ.DEV
-        </Link>
-      </Typography>
-      <List>
-        {[...drawerItems]}
-      </List>
-    </div>
+    <List>
+      <ListItem>
+        <Box pl={2} mt={1}>
+          <Typography variant='h5' component='h2'>
+            <Link
+              to='/build'
+              className={classes.homeLink}
+            >
+              XYZ.DEV
+            </Link>
+          </Typography>
+        </Box>
+      </ListItem>
+      {
+
+        Object.keys(chatRooms).map((category) => {
+
+          return (
+            <>
+              <ListItem
+                key={category}
+              >
+                <List
+                  className={classes.roomsList}
+                >
+                  <ListItem>
+                    <ListItemText
+                      className={classes.listItemText}
+                      classes={{
+                        primary: classes.roomCategory
+                      }}
+                      primary={`${category} rooms`}
+                    />
+                  </ListItem>
+                  {
+                    chatRooms[category].map((chatRoom) => {
+                      return (
+                        <ListItem
+                          key={chatRoom}
+                          onClick={() => {
+                            setSelectedChatRoom(chatRoom.toLocaleLowerCase());
+                            handleDrawerToggle();
+                          }}
+                          button
+                          classes={{
+                            button: classes.listItemButton
+                          }}
+                        >
+                          <ListItemText
+                            className={`${classes.listItemText}`}
+                            classes={{
+                              primary: classes.link
+                            }}
+                            primary={`# ${chatRoom}`} />
+                        </ListItem>
+                      );
+                    })
+                  }
+                </List>
+              </ListItem>
+
+              <Divider variant='middle' className={classes.divider} />
+            </>
+          );
+
+        })
+
+      }
+    </List>
   );
+
 
 
   return (
@@ -133,11 +176,8 @@ export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer
-            PaperProps={{
-
-            }}
             classes={{
-              paper: `${classes.drawerPaper} ${classes.desktopDrawer}`
+              paper: `${classes.drawerPaper}`
             }}
             variant="permanent"
             open

@@ -30,11 +30,7 @@ export default function BuildSong() {
         chatRooms={chatRooms}
         setSelectedChatRoom={setSelectedChatRoom}
       />
-      <Container>
-        <Grid container>
-          <ChatRoomScreen selectedChatRoom={selectedChatRoom} />
-        </Grid>
-      </Container>
+      <ChatRoomScreen selectedChatRoom={selectedChatRoom} />
     </div>
   );
 }
