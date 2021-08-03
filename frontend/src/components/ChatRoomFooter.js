@@ -47,6 +47,8 @@ const useStyles = makeStyles({
 
 export default function ChatRoomFooter({ chatRoomID, className }) {
 
+  //use chatRoomID to push messages into the chat room  
+
   const classes = useStyles();
 
   const handleSend = () => {
