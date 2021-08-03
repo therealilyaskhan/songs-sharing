@@ -13,9 +13,10 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import StyledButton from './controls/StyledButton';
 
 const useStyles = makeStyles((theme) => ({
-  title: {
+  roomTitle: {
     flexGrow: 1,
     color: '#000',
+    marginRight: '2.5rem',
     fontSize: '1.15rem',
     fontWeight: 600
   },
@@ -27,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   appBarBtns: {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    flexShrink: 0,
     '& > :not(:last-child)': {
       marginRight: 8
     }
@@ -82,7 +86,7 @@ export default function ChatRoomHeader({ chatRoomID }) {
 
   const classes = useStyles();
   const sm = useMediaQuery('(max-width:599.95px)');
-  const md = useMediaQuery('(max-width:749.95px)');
+  const md = useMediaQuery('(max-width:779.95px)');
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -144,7 +148,7 @@ export default function ChatRoomHeader({ chatRoomID }) {
         <Typography
           variant="h6"
           component="h3"
-          className={classes.title}
+          className={classes.roomTitle}
         >
           {`# ${name}`}
         </Typography>
