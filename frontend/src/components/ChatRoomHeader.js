@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   btnStartIcon: {
     marginRight: 4
   },
-  topbarXs: {
+  toolbarSm: {
     textAlign: 'center',
     '&:before': {
       content: '""',
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ChatRoomHeader({ chatRoomID }) {
+export default function ChatRoomHeader({ chatRoomID, className }) {
 
   //run fetch query to fetch chatRoom name, members, checklist via chatRoomID
   let name;
@@ -138,12 +138,13 @@ export default function ChatRoomHeader({ chatRoomID }) {
 
   return (
     <AppBar
+      className={className || ''}
       position="static"
       elevation={0}
       color="inherit"
     >
       <Toolbar
-        {...sm ? { className: `${classes.topbarXs}` } : {}}
+        {...sm ? { className: `${classes.toolbarSm}` } : {}}
       >
         <Typography
           variant="h6"

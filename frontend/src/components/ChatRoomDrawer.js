@@ -94,10 +94,8 @@ export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
         Object.keys(chatRooms).map((category) => {
 
           return (
-            <>
-              <ListItem
-                key={category}
-              >
+            <Box key={category}>
+              <ListItem>
                 <List
                   className={classes.roomsList}
                 >
@@ -139,7 +137,7 @@ export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
               </ListItem>
 
               <Divider variant='middle' className={classes.divider} />
-            </>
+            </Box>
           );
 
         })

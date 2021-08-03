@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 
 import ChatRoomDrawer from '../components/ChatRoomDrawer';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
@@ -7,12 +8,12 @@ import ChatRoomScreen from '../screens/ChatRoomScreen';
 const useStyles = makeStyles({
   root: {
     backgroundColor: "#F7F7F7",
-    width: "100%",
+    width: '100%',
     display: 'flex'
   }
 });
 
-export default function BuildSong() {
+export default function ChatRoomLayout() {
   const classes = useStyles();
   const [selectedChatRoom, setSelectedChatRoom] = useState('');
 
@@ -49,12 +50,12 @@ export default function BuildSong() {
   };
 
   return (
-    <div div className={classes.root}>
+    <Box className={classes.root}>
       <ChatRoomDrawer
         chatRooms={chatRooms}
         setSelectedChatRoom={setSelectedChatRoom}
       />
       <ChatRoomScreen selectedChatRoom={selectedChatRoom} />
-    </div>
+    </Box>
   );
 }

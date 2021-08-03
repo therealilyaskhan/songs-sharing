@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function ChatRoomBody() {
+import Box from '@material-ui/core/Box';
+
+export default function ChatRoomBody({ chatRoomID, className }) {
   return (
-    <div>
+    <Box p={4} className={className || ''}>
       chat room body
-    </div>
+    </Box>
   );
 }
