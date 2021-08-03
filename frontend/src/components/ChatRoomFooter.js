@@ -7,7 +7,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
-import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
+import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles({
   outlinedInput: {
@@ -37,6 +37,11 @@ const useStyles = makeStyles({
   multiline: {
     paddingTop: 15,
     paddingBottom: 15
+  },
+  disableRipple: {
+    '&:hover': {
+      backgroundColor: 'unset'
+    }
   }
 });
 
@@ -75,10 +80,12 @@ export default function ChatRoomFooter({ chatRoomID, className }) {
           endAdornment={
             <InputAdornment position="end">
               <IconButton
+                className={classes.disableRipple}
+                disableRipple
                 aria-label="send-button"
                 onClick={handleSend}
               >
-                <SendOutlinedIcon
+                <SendIcon
                   classes={{
                     root: classes.sendIcon
                   }}
