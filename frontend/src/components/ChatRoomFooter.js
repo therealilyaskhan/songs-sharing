@@ -26,10 +26,17 @@ const useStyles = makeStyles({
     }
   },
   textArea: {
-    paddingLeft: 25
+    paddingLeft: 25,
+    '&::placeholder': {
+      fontSize: '15px'
+    }
   },
   sendIcon: {
     fontSize: '1.8rem'
+  },
+  multiline: {
+    paddingTop: 15,
+    paddingBottom: 15
   }
 });
 
@@ -55,7 +62,8 @@ export default function ChatRoomFooter({ chatRoomID, className }) {
           id="dm-to-room"
           classes={{
             root: classes.outlinedInput,
-            inputMultiline: classes.textArea
+            inputMultiline: classes.textArea,
+            multiline: classes.multiline
           }}
           autoFocus
           fullWidth
