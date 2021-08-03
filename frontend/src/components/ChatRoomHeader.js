@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { AppBar, Box, makeStyles, Toolbar, Typography, useMediaQuery } from '@material-ui/core';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import IconButton from '@material-ui/core/IconButton';
 
 import PlaylistAddCheckOutlinedIcon from '@material-ui/icons/PlaylistAddCheckOutlined';
 import PeopleAltOutlinedIcon from '@material-ui/icons/PeopleAltOutlined';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 
 import StyledButton from './controls/StyledButton';
 
@@ -75,7 +81,10 @@ export default function ChatRoomHeader({ chatRoomID }) {
 
 
   const classes = useStyles();
-  const xs = useMediaQuery('(max-width:599.95px)');
+  const sm = useMediaQuery('(max-width:599.95px)');
+  const md = useMediaQuery('(max-width:749.95px)');
+
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const checklistHandler = (e) => {
     console.log('checklist clicked');
@@ -83,6 +92,45 @@ export default function ChatRoomHeader({ chatRoomID }) {
   const showMembersHandler = (e) => {
     console.log('members clicked');
   };
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const appBarMenu = (
+    <>
+      <IconButton
+        aria-label="more"
+        aria-controls="app-bar-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
+        <MoreVertIcon />
+      </IconButton>
+      <Menu
+        id="app-bar-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={() => {
+          handleClose();
+          checklistHandler();
+        }}>
+          Checklist
+        </MenuItem>
+        <MenuItem onClick={() => {
+          handleClose();
+          showMembersHandler();
+        }}>
+          Members
+        </MenuItem>
+      </Menu>
+    </>
+  );
 
   return (
     <AppBar
@@ -91,7 +139,7 @@ export default function ChatRoomHeader({ chatRoomID }) {
       color="inherit"
     >
       <Toolbar
-        {...xs ? { className: `${classes.topbarXs}` } : {}}
+        {...sm ? { className: `${classes.topbarXs}` } : {}}
       >
         <Typography
           variant="h6"
@@ -101,36 +149,43 @@ export default function ChatRoomHeader({ chatRoomID }) {
           {`# ${name}`}
         </Typography>
         <Box className={classes.appBarBtns}>
-          <StyledButton
-            disableElevation
-            startIcon={<PlaylistAddCheckOutlinedIcon />}
-            classes={{
-              startIcon: classes.btnStartIcon
-            }}
-            onClick={checklistHandler}
-            variant="contained"
-            color="secondary"
-            style={{ color: '#fff' }}
-            customStyles={classes.appBarBtn}
-            size="small"
-          >
-            Checklist
-          </StyledButton>
-          <StyledButton
-            disableElevation
-            startIcon={<PeopleAltOutlinedIcon />}
-            classes={{
-              startIcon: classes.btnStartIcon
-            }}
-            onClick={showMembersHandler}
-            variant="contained"
-            color="secondary"
-            style={{ color: '#fff' }}
-            customStyles={classes.appBarBtn}
-            size="small"
-          >
-            Members
-          </StyledButton>
+          {
+            md ?
+              appBarMenu
+              :
+              <>
+                <StyledButton
+                  disableElevation
+                  startIcon={<PlaylistAddCheckOutlinedIcon />}
+                  classes={{
+                    startIcon: classes.btnStartIcon
+                  }}
+                  onClick={checklistHandler}
+                  variant="contained"
+                  color="secondary"
+                  style={{ color: '#fff' }}
+                  customStyles={classes.appBarBtn}
+                  size="small"
+                >
+                  Checklist
+                </StyledButton>
+                <StyledButton
+                  disableElevation
+                  startIcon={<PeopleAltOutlinedIcon />}
+                  classes={{
+                    startIcon: classes.btnStartIcon
+                  }}
+                  onClick={showMembersHandler}
+                  variant="contained"
+                  color="secondary"
+                  style={{ color: '#fff' }}
+                  customStyles={classes.appBarBtn}
+                  size="small"
+                >
+                  Members
+                </StyledButton>
+              </>
+          }
         </Box>
       </Toolbar>
     </AppBar>

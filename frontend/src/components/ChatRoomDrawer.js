@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
     position: 'absolute',
-    top: 12,
+    top: 6,
     left: 20,
     zIndex: 1200
   },
