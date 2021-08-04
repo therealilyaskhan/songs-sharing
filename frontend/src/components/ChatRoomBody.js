@@ -3,7 +3,7 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 
 import Message from './Message';
-import Image from '../assets/images/band__photo.jpg';
+import Image from '../assets/images/user_img.jpg';
 
 export default function ChatRoomBody({ chatRoomID, className }) {
 

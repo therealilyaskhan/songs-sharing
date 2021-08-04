@@ -8,12 +8,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import Box from '@material-ui/core/Box';
 
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import CardContainer from './Card/CardContainer';
 import CardAvatarResponsive from './Card/CardAvatarResponsive';
 import CardContentResponsive from './Card/CardContentResponsive';
 import StyledButton from './controls/StyledButton';
 
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   card: {

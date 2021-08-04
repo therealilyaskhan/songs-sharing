@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import Drawer from '@material-ui/core/Drawer';
@@ -94,7 +94,7 @@ export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
         Object.keys(chatRooms).map((category) => {
 
           return (
-            <Box key={category}>
+            <Fragment key={category}>
               <ListItem>
                 <List
                   className={classes.roomsList}
@@ -137,7 +137,7 @@ export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
               </ListItem>
 
               <Divider variant='middle' className={classes.divider} />
-            </Box>
+            </Fragment>
           );
 
         })

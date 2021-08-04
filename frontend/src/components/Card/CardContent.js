@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: props => (props.pb === 0 || props.pb) ? `${props.pb}px` : '16px',
     paddingRight: props => (props.pr === 0 || props.pr) ? `${props.pr}px` : '16px',
     paddingLeft: props => (props.pl === 0 || props.pl) ? `${props.pl}px` : '16px',
-    borderRadius: props => (props.br === 0 || props.br) ? `${props.br}px` : 10,
     '&:last-child': {
       paddingBottom: props => (props.pb === 0 || props.pb) ? `${props.pb}px` : '24px',
     }

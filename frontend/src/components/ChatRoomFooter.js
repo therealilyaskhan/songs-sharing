@@ -56,7 +56,7 @@ export default function ChatRoomFooter({ chatRoomID, className }) {
   };
 
   return (
-    <Box p={4} className={className || ''}>
+    <Box p={4} pb={3.5} className={className || ''}>
       <FormControl
         variant="outlined"
         classes={{
