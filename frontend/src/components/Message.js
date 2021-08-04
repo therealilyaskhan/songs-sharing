@@ -1,6 +1,8 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Typography from '@material-ui/core/Typography';
 
 import CardContent from './Card/CardContent';
 import CardContainer from './Card/CardContainer';
@@ -12,12 +14,23 @@ const useStyles = makeStyles({
     border: '1px solid #707070'
   },
   msgBox: {
-    display: 'inline-block',
     width: 'fit-content'
+  },
+  msg: {
+    margin: '-2px 0px -2px',
+    lineHeight: '18px'
   }
 });
 
 export default function Message({ msg }) {
+
+  const lg = useMediaQuery('(max-width:1279.95px)'); //90%
+  const md = useMediaQuery('(max-width:650px)'); //90%
+  const sm = useMediaQuery('(max-width:620px)'); //95%
+  const xs = useMediaQuery('(max-width:599.95px)'); //85%
+  const xss = useMediaQuery('(max-width:500px)'); //95%
+
+  const msgWidth = xss ? '95%' : xs ? '85%' : sm ? '95%' : md ? '90%' : lg ? '85%' : '80%';
 
   const classes = useStyles();
 
@@ -28,8 +41,7 @@ export default function Message({ msg }) {
       alignItems='center'
       mb={2.5}
       flexWrap='nowrap'
-      width='85%'
-      maxWidth='85%'
+      width={msgWidth}
     >
       <Box
         flexShrink={0}
@@ -61,7 +73,14 @@ export default function Message({ msg }) {
           <CardContent
             pb={16}
           >
-            {message}
+            <Typography
+              className={classes.msg}
+              variant='subtitle2'
+              component='div'
+              color='textPrimary'
+            >
+              {message}
+            </Typography>
           </CardContent>
         </CardContainer>
       </Box>
