@@ -34,12 +34,9 @@ const useStyles = makeStyles({
 
 export default function Message({ msg }) {
 
-  const lg = useMediaQuery('(max-width:1279.95px)'); //90%
-  const md = useMediaQuery('(max-width:650px)'); //90%
-  const sm = useMediaQuery('(max-width:620px)'); //95%
-  const xs = useMediaQuery('(max-width:599.95px)'); //85%
-
-  const msgWidth = xs ? '75%' : sm ? '70%' : md ? '80%' : lg ? '75%' : '70%';
+  const md = useMediaQuery('(max-width:650px)'); //75%
+  const sm = useMediaQuery('(max-width:620px)'); //70%
+  const xs = useMediaQuery('(max-width:599.95px)'); //75%
 
   const classes = useStyles();
 
@@ -75,8 +72,8 @@ export default function Message({ msg }) {
       <Box
         flexGrow={1}
         flexShrink={1}
-        flexBasis={msgWidth}
-        maxWidth={msgWidth}
+        flexBasis='70%'
+        maxWidth='70%'
         display='flex'
         alignItems='center'
         justifyContent={isMyMessage ? 'flex-end' : 'flex-start'}

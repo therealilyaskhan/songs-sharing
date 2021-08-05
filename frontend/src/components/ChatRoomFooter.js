@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -47,56 +47,66 @@ const useStyles = makeStyles({
 
 export default function ChatRoomFooter({ chatRoomID, className }) {
 
-  //use chatRoomID to push messages into the chat room  
-
   const classes = useStyles();
+  const [text, setText] = useState('');
 
-  const handleSend = () => {
-    console.log('message sent');
+  //use chatRoomID to push messages into the chat room  
+  const sendMsgHandler = (e) => {
+    e.preventDefault();
+    setText('');
+    if (text === '')
+      console.log("Can't send empty msg!!!");
+    if (text)
+      console.log('msg sent!!!');
   };
 
   return (
     <Box p={4} py={3} className={className || ''}>
-      <FormControl
-        variant="outlined"
-        classes={{
-          root: classes.outlinedInput
-        }}
-        hiddenLabel
-        fullWidth
+      <form
+        noValidate autoComplete="off"
+        onSubmit={sendMsgHandler}
       >
-        <OutlinedInput
-          id="dm-to-room"
+        <FormControl
+          variant="outlined"
           classes={{
-            root: classes.outlinedInput,
-            inputMultiline: classes.textArea,
-            multiline: classes.multiline
+            root: classes.outlinedInput
           }}
-          autoFocus
+          hiddenLabel
           fullWidth
-          multiline
-          rowsMax={4}
-          placeholder='Say something nice ...'
-          type='text'
-          aria-label='message-text-box'
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                className={classes.disableRipple}
-                disableRipple
-                aria-label="send-button"
-                onClick={handleSend}
-              >
-                <SendIcon
-                  classes={{
-                    root: classes.sendIcon
-                  }}
-                />
-              </IconButton>
-            </InputAdornment>
-          }
-        />
-      </FormControl>
+        >
+          <OutlinedInput
+            id="dm-to-room"
+            classes={{
+              root: classes.outlinedInput,
+              inputMultiline: classes.textArea,
+              multiline: classes.multiline
+            }}
+            onChange={(e) => setText(e.target.value)}
+            autoFocus
+            fullWidth
+            multiline
+            rowsMax={4}
+            placeholder='Say something nice ...'
+            type='text'
+            aria-label='message-text-box'
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  className={classes.disableRipple}
+                  disableRipple
+                  aria-label="send-button"
+                >
+                  <SendIcon
+                    classes={{
+                      root: classes.sendIcon
+                    }}
+                  />
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+      </form>
     </Box>
   );
 }
