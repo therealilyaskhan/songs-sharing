@@ -57,13 +57,14 @@ export default function ChatRoomFooter({ chatRoomID, className }) {
     if (text === '')
       console.log("Can't send empty msg!!!");
     if (text)
-      console.log('msg sent!!!');
+      console.log('msg sent!!!: ' + text);
   };
 
   return (
     <Box p={4} py={3} className={className || ''}>
       <form
-        noValidate autoComplete="off"
+        noValidate
+        autoComplete="off"
         onSubmit={sendMsgHandler}
       >
         <FormControl
@@ -81,6 +82,7 @@ export default function ChatRoomFooter({ chatRoomID, className }) {
               inputMultiline: classes.textArea,
               multiline: classes.multiline
             }}
+            value={text}
             onChange={(e) => setText(e.target.value)}
             autoFocus
             fullWidth
@@ -95,6 +97,7 @@ export default function ChatRoomFooter({ chatRoomID, className }) {
                   className={classes.disableRipple}
                   disableRipple
                   aria-label="send-button"
+                  type='submit'
                 >
                   <SendIcon
                     classes={{
