@@ -10,7 +10,9 @@ const useStyles = makeStyles((theme) => ({
     height: props => props.size || 124
   },
   avatar: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 }));
 

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 
+import UserProfileInfo from '../components/UserProfileInfo';
 import UserSkillsScreen from '../screens/UserSkillsScreen';
 import UserSongsScreen from '../screens/UserSongsScreen';
-import UserProfileDrawer from '../components/UserProfileDrawer';
 
-import Image from '../assets/images/band__photo.jpg';
+import Image from '../assets/images/user_img.jpg';
 
 const useStyles = makeStyles({
   root: {
@@ -27,25 +28,27 @@ export default function BuildSong() {
     fullName: 'David Gilmour'
   };
 
+  const navs = [
+    'skills',
+    'songs'
+  ];
+
   return (
-    <>
-      <div div className={classes.root}>
-        <UserProfileDrawer
-          user={user}
-          setActiveLink={setActiveLink}
-        />
-        <Container>
-          <Grid container>
-            {
-              activeLink === 'skills' ?
-                <UserSkillsScreen /> :
-                activeLink === 'songs' ?
-                  <UserSongsScreen /> :
-                  null
-            }
-          </Grid>
-        </Container>
-      </div>
-    </>
+    <Box className={classes.root}>
+      <UserProfileInfo
+        navs={navs}
+        user={user}
+        setActiveLink={setActiveLink}
+      />
+      <Box style={{ backgroundColor: '#ff0000' }}>
+        {
+          activeLink === 'skills' ?
+            <UserSkillsScreen /> :
+            activeLink === 'songs' ?
+              <UserSongsScreen /> :
+              null
+        }
+      </Box>
+    </Box>
   );
 }

@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 'auto'
   },
   listText: {
-    paddingLeft: 5
+    paddingLeft: props => props.endIcon ? 0 : 5,
+    paddingRight: props => props.endIcon ? 5 : 0
   }
 }));
 
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function IWT(props) {
 
-  const { text, children, textBold, customStyles, textSizeRule, textWeightRule, ...other } = props;
+  const { text, endIcon, children, textBold, customStyles, textSizeRule, textWeightRule, ...other } = props;
 
   const classes = useStyles(props);
 
@@ -30,13 +31,26 @@ export default function IWT(props) {
       {...other}
       disableRipple={true}
     >
-      <ListItemIcon className={classes.listIcon}>
-        {children || null}
-      </ListItemIcon>
+      {
+        !endIcon
+        &&
+        <ListItemIcon className={classes.listIcon}>
+          {children || null}
+        </ListItemIcon>
+      }
+
       <ListItemText
         className={`${classes.listText} ${textSizeRule} ${textWeightRule}`}
         primary={text}
       />
+
+      {
+        endIcon
+        &&
+        <ListItemIcon className={classes.listIcon}>
+          {children || null}
+        </ListItemIcon>
+      }
     </ListItem>
   );
 }

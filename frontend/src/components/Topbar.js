@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 import StyledButton from './controls/StyledButton';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: '#fdfdfd'
+  },
   title: {
     flexGrow: 1
   },
@@ -43,7 +46,7 @@ export default function Topbar({ responsive }) {
   const xs = useMediaQuery('(max-width:599.95px)');
 
   return (
-    <Box mx={xs ? 2.5 : 5}>
+    <Box px={xs ? 2.5 : 5} className={classes.root}>
       <AppBar
         position="static"
         elevation={0}
