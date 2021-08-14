@@ -28,7 +28,7 @@ export default function BuildSong() {
     fullName: 'David Gilmour'
   };
 
-  const navs = [
+  const userNav = [
     'skills',
     'songs'
   ];
@@ -36,7 +36,7 @@ export default function BuildSong() {
   return (
     <Box className={classes.root}>
       <UserProfileInfo
-        navs={navs}
+        userNav={userNav}
         user={user}
         setActiveLink={setActiveLink}
       />

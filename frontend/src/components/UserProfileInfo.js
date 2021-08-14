@@ -12,6 +12,9 @@ import IWT from './IWT';
 
 const useStyles = makeStyles((theme) => ({
   listItemText: {
+    fontSize: '1.2rem',
+    fontWeight: 700,
+    color: '#0F94EC',
     textTransform: 'capitalize'
   },
   iwt: {
@@ -21,20 +24,36 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       fontWeight: 600
     }
+  },
+  userNav: {
+    marginTop: '4rem'
+  },
+  listItem: {
+    textAlign: 'center',
+    paddingTop: 1,
+    paddingBottom: 1,
+    '&:active, &:focus > *': {
+      color: '#fff'
+    }
   }
 }));
 
-export default function UserProfileInfo({ user, setActiveLink, navs }) {
+export default function UserProfileInfo({ user, setActiveLink, userNav }) {
 
   const { photo, fullName } = user;
 
   const classes = useStyles();
 
-  const navsList = (
+  const navs = (
     <List>
-      {navs.map((text) => (
-        <ListItem button key={text}>
-          <ListItemText primary={text} className={classes.listItemText} />
+      {userNav.map((text) => (
+        <ListItem button key={text} className={classes.listItem}>
+          <ListItemText
+            classes={{
+              primary: classes.listItemText
+            }}
+            primary={text}
+          />
         </ListItem>
       ))}
     </List>
@@ -42,7 +61,7 @@ export default function UserProfileInfo({ user, setActiveLink, navs }) {
 
 
   return (
-    <Box pt={7} flexGrow={1} flexShrink={1} maxWidth='350px' minWidth='240px'>
+    <Box pt={7} flexGrow={1} flexShrink={1} maxWidth='350px' minWidth='2  40px'>
       <Box>
         <CardAvatarResponsive
           src={photo}
@@ -64,8 +83,8 @@ export default function UserProfileInfo({ user, setActiveLink, navs }) {
           />
         </IWT>
       </Box>
-      <nav>
-        {navsList}
+      <nav className={classes.userNav}>
+        {navs}
       </nav>
     </Box>
   );
