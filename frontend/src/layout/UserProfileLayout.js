@@ -72,7 +72,7 @@ export default function BuildSong() {
         flexGrow={1}
         flexShrink={1}
         minWidth={sm ? '200px' : '240px'}
-        maxWidth='350px'
+        maxWidth='320px'
       >
         <UserProfileInfo
           profileNavs={profileNavs}
@@ -83,7 +83,7 @@ export default function BuildSong() {
       </Box>
 
       <Box
-        flexGrow={2.8}
+        flexGrow={2}
         flexShrink={1}
       >
         {
