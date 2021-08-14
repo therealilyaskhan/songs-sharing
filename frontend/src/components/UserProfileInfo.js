@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   listItemText: {
     fontSize: '1.2rem',
     fontWeight: 700,
-    color: '#0F94EC',
+    color: '#C7C7C7',
     textTransform: 'capitalize'
   },
   iwt: {
@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     paddingTop: 1,
     paddingBottom: 1,
-    '&:active, &:focus > *': {
-      color: '#fff'
+    '&:active > * > *, &:focus > * > *': {
+      color: '#0F94EC'
     }
   }
 }));
@@ -47,7 +47,13 @@ export default function UserProfileInfo({ user, setActiveLink, userNav }) {
   const navs = (
     <List>
       {userNav.map((text) => (
-        <ListItem button key={text} className={classes.listItem}>
+        <ListItem
+          key={text}
+          className={classes.listItem}
+          onClick={() => { setActiveLink(text.toLocaleLowerCase()); }}
+          button
+          disableRipple
+        >
           <ListItemText
             classes={{
               primary: classes.listItemText
