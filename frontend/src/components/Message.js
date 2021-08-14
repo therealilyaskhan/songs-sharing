@@ -5,7 +5,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Typography from '@material-ui/core/Typography';
 import { lightBlue } from '@material-ui/core/colors';
 
-import CardContent from './Card/CardContent';
+import CardContentSimple from './Card/CardContentSimple';
 import CardContainer from './Card/CardContainer';
 import CardAvatarResponsive from './Card/CardAvatarResponsive';
 
@@ -88,7 +88,7 @@ export default function Message({ msg }) {
           mb={0}
           ml={isMyMessage ? 0 : 20}
         >
-          <CardContent
+          <CardContentSimple
             pb={16}
           >
             <Typography
@@ -98,7 +98,7 @@ export default function Message({ msg }) {
             >
               {message}
             </Typography>
-          </CardContent>
+          </CardContentSimple>
         </CardContainer>
       </Box>
     </Box>

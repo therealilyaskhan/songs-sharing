@@ -4,7 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import CardContainer from './Card/CardContainer';
-import CardContent from './Card/CardContent';
+import CardContentSimple from './Card/CardContentSimple';
 import { Box, useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -84,14 +84,14 @@ export default function TransitionsModal(props) {
             elevation={0}
             customStyles={`${classes.paper} ${fullWidth ? classes.w100 : ''} ${maxWidth ? classes[maxWidth] : ''}`}
           >
-            <CardContent
+            <CardContentSimple
               pt={12}
               pb={12}
               pr={px}
               pl={px}
             >
               {children}
-            </CardContent>
+            </CardContentSimple>
           </CardContainer>
         </Fade>
       </Modal>

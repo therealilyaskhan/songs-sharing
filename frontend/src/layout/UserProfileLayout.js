@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
+
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -8,7 +7,7 @@ import UserProfileInfo from '../components/UserProfileInfo';
 import UserSkillsScreen from '../screens/UserSkillsScreen';
 import UserSongsScreen from '../screens/UserSongsScreen';
 
-import Image from '../assets/images/user_img.jpg';
+import Photo from '../assets/images/user_img.jpg';
 
 const useStyles = makeStyles({
   root: {
@@ -22,33 +21,78 @@ export default function BuildSong() {
   const classes = useStyles();
   const [activeLink, setActiveLink] = useState('skills');
 
-  //fetch user name, user photo URi, username etc
+  //fetch user data from api endpoint
   const user = {
-    photo: Image,
-    fullName: 'David Gilmour'
+    photo: Photo,
+    fullName: 'David Gilmour',
+    skills: [
+      {
+        skillName: 'guitar',
+        kudos: 335,
+      },
+      {
+        skillName: 'bass',
+        kudos: 335,
+      },
+      {
+        skillName: 'drum',
+        kudos: 335,
+      },
+      {
+        skillName: 'piano',
+        kudos: 335,
+      },
+      {
+        skillName: 'keyboard',
+        kudos: 335,
+      },
+      {
+        skillName: 'xylophone',
+        kudos: 335,
+      },
+      {
+        skillName: 'Adobe XD',
+        kudos: 335,
+      },
+    ],
+    songs: []
   };
 
-  const userNav = [
+  const profileNavs = [
     'skills',
     'songs'
   ];
 
   return (
     <Box className={classes.root}>
-      <UserProfileInfo
-        userNav={userNav}
-        user={user}
-        setActiveLink={setActiveLink}
-      />
-      <Box style={{ backgroundColor: '#ff0000' }}>
+
+      <Box
+        flexGrow={1}
+        flexShrink={1}
+        minWidth='240px'
+        maxWidth='350px'
+      >
+        <UserProfileInfo
+          profileNavs={profileNavs}
+          fullName={user.fullName}
+          userPhoto={user.photo}
+          setActiveLink={setActiveLink}
+        />
+      </Box>
+
+      <Box
+        flexGrow={2.8}
+        flexShrink={1}
+      >
         {
           activeLink === 'skills' ?
-            <UserSkillsScreen /> :
+            <UserSkillsScreen skills={user.skills} userFullName={user.fullName} /> :
             activeLink === 'songs' ?
               <UserSongsScreen /> :
               null
         }
       </Box>
+
     </Box>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -38,15 +38,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function UserProfileInfo({ user, setActiveLink, userNav }) {
-
-  const { photo, fullName } = user;
+export default function UserProfileInfo({ userPhoto, fullName, setActiveLink, profileNavs }) {
 
   const classes = useStyles();
 
   const navs = (
     <List>
-      {userNav.map((text) => (
+      {profileNavs.map((text) => (
         <ListItem
           key={text}
           className={classes.listItem}
@@ -67,10 +65,10 @@ export default function UserProfileInfo({ user, setActiveLink, userNav }) {
 
 
   return (
-    <Box pt={7} flexGrow={1} flexShrink={1} maxWidth='350px' minWidth='240px'>
+    <Box py={9}>
       <Box>
         <CardAvatarResponsive
-          src={photo}
+          src={userPhoto}
           centered
           alt="artist photo"
           aria-label="artist photo"
@@ -80,9 +78,7 @@ export default function UserProfileInfo({ user, setActiveLink, userNav }) {
           centered
           endIcon
           text={fullName}
-          textSizeRule={classes.iwtTextSize}
           customStyles={classes.iwt}
-          textWeightRule={classes.weight600}
         >
           <GitHubIcon
             color="primary"

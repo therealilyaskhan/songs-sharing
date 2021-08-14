@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardContainer from './Card/CardContainer';
 import IWT from './IWT';
-import CardContent from './Card/CardContent';
+import CardContentSimple from './Card/CardContentSimple';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import StyledButton from './controls/StyledButton';
@@ -37,7 +37,7 @@ export default function ChecklistCard({ checklist }) {
 
   return (
     <CardContainer elevation={3}>
-      <CardContent>
+      <CardContentSimple>
         <Typography
           className={classes.title}
           gutterBottom
@@ -66,7 +66,7 @@ export default function ChecklistCard({ checklist }) {
           })}
         </List>
 
-      </CardContent>
+      </CardContentSimple>
       <CardActions>
         <StyledButton
           variant="contained"

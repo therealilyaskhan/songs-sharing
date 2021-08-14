@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardContainer from './Card/CardContainer';
 import IWT from './IWT';
-import CardContent from './Card/CardContent';
+import CardContentSimple from './Card/CardContentSimple';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
@@ -31,7 +31,7 @@ export default function InfoCard({ objective, tasks }) {
 
   return (
     <CardContainer elevation={3}>
-      <CardContent
+      <CardContentSimple
         pb={0}
       >
         <Typography
@@ -45,9 +45,9 @@ export default function InfoCard({ objective, tasks }) {
         <Typography>
           {objective}
         </Typography>
-      </CardContent>
+      </CardContentSimple>
 
-      <CardContent>
+      <CardContentSimple>
         <Typography
           className={classes.title}
           variant="h6"
@@ -71,7 +71,7 @@ export default function InfoCard({ objective, tasks }) {
           })}
         </List>
 
-      </CardContent>
+      </CardContentSimple>
     </CardContainer>
   );
 }
