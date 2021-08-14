@@ -27,7 +27,6 @@ export default function UserSkillsScreen({ skills, userFullName }) {
 
   const classes = useStyles();
   const md = useMediaQuery('(max-width:680px)');
-  const xs = useMediaQuery('(max-width:800px)');
 
   return (
     <Box mr={md ? 5 : 8} pt={5.5} pb={7}>
