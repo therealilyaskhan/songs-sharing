@@ -6,14 +6,16 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles((theme) => ({
   li: {
-    padding: '0px'
+    padding: '0px',
+    justifyContent: props => props.centered ? 'center' : 'flex-start'
   },
   listIcon: {
     minWidth: 'auto'
   },
   listText: {
     paddingLeft: props => props.endIcon ? 0 : 5,
-    paddingRight: props => props.endIcon ? 5 : 0
+    paddingRight: props => props.endIcon ? 5 : 0,
+    flex: props => props.centered ? '0 0 auto' : '1 1 auto'
   }
 }));
 
@@ -21,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function IWT(props) {
 
-  const { text, endIcon, children, textBold, customStyles, textSizeRule, textWeightRule, ...other } = props;
+  const { text, centered, endIcon, children, textBold, customStyles, textSizeRule, textWeightRule, ...other } = props;
 
   const classes = useStyles(props);
 

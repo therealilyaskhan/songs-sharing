@@ -10,11 +10,17 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import CardAvatarResponsive from './Card/CardAvatarResponsive';
 import IWT from './IWT';
 
-const infoWidth = 350;
-
 const useStyles = makeStyles((theme) => ({
   listItemText: {
     textTransform: 'capitalize'
+  },
+  iwt: {
+    marginTop: 5
+  },
+  weight600: {
+    '& > *': {
+      fontWeight: 600
+    }
   }
 }));
 
@@ -36,7 +42,7 @@ export default function UserProfileInfo({ user, setActiveLink, navs }) {
 
 
   return (
-    <Box flexBasis={infoWidth} pt={7}>
+    <Box pt={7} flexGrow={1} flexShrink={1} maxWidth='350px' minWidth='240px'>
       <Box>
         <CardAvatarResponsive
           src={photo}
@@ -46,12 +52,15 @@ export default function UserProfileInfo({ user, setActiveLink, navs }) {
           size={136}
         />
         <IWT
+          centered
           endIcon
           text={fullName}
           textSizeRule={classes.iwtTextSize}
+          customStyles={classes.iwt}
+          textWeightRule={classes.weight600}
         >
           <GitHubIcon
-            color="secondary"
+            color="primary"
           />
         </IWT>
       </Box>
