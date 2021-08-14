@@ -3,7 +3,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import { Box, useMediaQuery } from '@material-ui/core';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
 
@@ -12,7 +12,7 @@ import IWT from './IWT';
 
 const useStyles = makeStyles((theme) => ({
   listItemText: {
-    fontSize: '1.2rem',
+    fontSize: sm => sm ? '1.1rem' : '1.2rem',
     fontWeight: 700,
     color: '#C7C7C7',
     textTransform: 'capitalize'
@@ -35,12 +35,25 @@ const useStyles = makeStyles((theme) => ({
     '&:active > * > *, &:focus > * > *': {
       color: '#0F94EC'
     }
+  },
+  iwtTextSize: {
+    '& > *': {
+      fontSize: '0.85rem',
+    }
+  },
+  userIcon: {
+    marginTop: '-3px'
+  },
+  smallIcon: {
+    width: '1.1rem',
+    height: 'auto'
   }
 }));
 
 export default function UserProfileInfo({ userPhoto, fullName, setActiveLink, profileNavs }) {
 
-  const classes = useStyles();
+  const sm = useMediaQuery('(max-width:640px)');
+  const classes = useStyles(sm);
 
   const navs = (
     <List>
@@ -72,16 +85,19 @@ export default function UserProfileInfo({ userPhoto, fullName, setActiveLink, pr
           centered
           alt="artist photo"
           aria-label="artist photo"
-          size={136}
+          size={sm ? 115 : 136}
         />
         <IWT
           centered
           endIcon
           text={fullName}
           customStyles={classes.iwt}
+          textWeightRule={classes.weight600}
+          {...sm ? { textSizeRule: classes.iwtTextSize } : {}}
         >
           <GitHubIcon
             color="primary"
+            className={`${classes.userIcon} ${sm ? classes.smallIcon : ''}`}
           />
         </IWT>
       </Box>

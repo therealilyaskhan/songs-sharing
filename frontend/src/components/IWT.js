@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
   listText: {
     paddingLeft: props => props.endIcon ? 0 : 5,
     paddingRight: props => props.endIcon ? 5 : 0,
+    marginRight: props => props.mrText ? props.mrText : 0,
+    marginLeft: props => props.mlText ? props.mlText : 0,
     flex: props => props.centered ? '0 0 auto' : '1 1 auto'
   }
 }));

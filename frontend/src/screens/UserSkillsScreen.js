@@ -2,14 +2,11 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
+import { useMediaQuery } from '@material-ui/core';
 
 import CardContainer from '../components/Card/CardContainer';
 import CardContentSimple from '../components/Card/CardContentSimple';
-import StyledButton from '../components/controls/StyledButton';
-import IWT from '../components/IWT';
+import ArtistSkillItem from '../components/ArtistSkillItem';
 
 const useStyles = makeStyles({
   cardMinHeight: {
@@ -17,53 +14,23 @@ const useStyles = makeStyles({
   },
   flexColumn: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start'
+    flexDirection: 'column'
   },
   fontStyles: {
     fontWeight: 600,
     color: '#C7C7C7',
     letterSpacing: 1
-  },
-  skillItem: {
-    fontSize: 12,
-    backgroundColor: 'rgba(0, 0, 0, 0.04)',
-    paddingLeft: 15,
-    paddingRight: 15,
-    minWidth: '15.2rem'
-  },
-  iwtTextSize: {
-    '& > *': {
-      fontSize: '0.85rem',
-    }
-  },
-  iwtWeight600: {
-    '& > *': {
-      fontWeight: 600
-    }
-  },
-  weight600: {
-    fontWeight: 600
-  },
-  kudos: {
-    fontSize: 11,
-    fontWeight: 400,
-    marginBottom: '-4px'
-  },
-  thumbColor: {
-    fill: '#ffffff',
-    stroke: '#333333',
-    width: '1.4rem',
-    height: 'auto'
   }
 });
 
 export default function UserSkillsScreen({ skills, userFullName }) {
 
   const classes = useStyles();
+  const md = useMediaQuery('(max-width:680px)');
+  const xs = useMediaQuery('(max-width:800px)');
 
   return (
-    <Box mr={8} pt={5.5} pb={7}>
+    <Box mr={md ? 5 : 8} pt={5.5} pb={7}>
       <CardContainer
         elevation={3}
         br={35}
@@ -91,48 +58,18 @@ export default function UserSkillsScreen({ skills, userFullName }) {
           >
             {userFullName + ' '}likes to work with ...
           </Typography>
-          {
-            skills.map((skill) => {
-              return (
-                <StyledButton
-                  key={skill.skillName}
-                  disableRipple
-                  disableFocusRipple
-                  disableElevation
-                  elevation={0}
-                  variant="outlined"
-                  size="medium"
-                  customStyles={classes.skillItem}
-                >
-                  <IWT
-                    endIcon
-                    text={skill.skillName}
-                    textSizeRule={classes.iwtTextSize}
-                    textWeightRule={classes.iwtWeight600}
-                    customStyles={classes.iwt}
-                  >
-                    <ThumbUpIcon
-                      className={classes.thumbColor}
-                    />
-                  </IWT>
-                  <Box ml={0.75} mr={0.4} mb={-0.25} >
-                    <Typography
-                      className={classes.weight600}
-                      variant="subtitle2"
-                    >
-                      {skill.kudos}
-                    </Typography>
-                  </Box>
-                  <Typography
-                    variant="caption"
-                    className={classes.kudos}
-                  >
-                    Kudos
-                  </Typography>
-                </StyledButton>
-              );
-            })
-          }
+
+          <Box mt={4} maxWidth='450px'>
+            {
+              skills.map((skill) => {
+                return (
+                  <ArtistSkillItem skill={skill} />
+                );
+              })
+            }
+          </Box>
+
+
         </CardContentSimple>
       </CardContainer>
     </Box>

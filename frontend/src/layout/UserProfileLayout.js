@@ -8,6 +8,7 @@ import UserSkillsScreen from '../screens/UserSkillsScreen';
 import UserSongsScreen from '../screens/UserSongsScreen';
 
 import Photo from '../assets/images/user_img.jpg';
+import { useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles({
 
 export default function BuildSong() {
   const classes = useStyles();
+  const sm = useMediaQuery('(max-width:640px)');
   const [activeLink, setActiveLink] = useState('skills');
 
   //fetch user data from api endpoint
@@ -69,7 +71,7 @@ export default function BuildSong() {
       <Box
         flexGrow={1}
         flexShrink={1}
-        minWidth='240px'
+        minWidth={sm ? '200px' : '240px'}
         maxWidth='350px'
       >
         <UserProfileInfo
