@@ -67,7 +67,7 @@ export default function UserProfileInfo({ user, setActiveLink, userNav }) {
 
 
   return (
-    <Box pt={7} flexGrow={1} flexShrink={1} maxWidth='350px' minWidth='2  40px'>
+    <Box pt={7} flexGrow={1} flexShrink={1} maxWidth='350px' minWidth='240px'>
       <Box>
         <CardAvatarResponsive
           src={photo}
