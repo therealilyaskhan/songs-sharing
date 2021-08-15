@@ -26,10 +26,9 @@ const useStyles = makeStyles({
 export default function UserSkillsScreen({ skills, userFullName }) {
 
   const classes = useStyles();
-  const md = useMediaQuery('(max-width:680px)');
 
   return (
-    <Box mr={md ? 5 : 8} pt={5.5} pb={7}>
+    <Box pt={5.5} pb={7}>
       <CardContainer
         elevation={3}
         br={35}

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: 'flex',
     flexDirection: xs => xs ? 'column' : 'row',
-    alignItems: xs => xs ? 'center' : 'flex-start'
+    alignItems: xs => xs ? 'stretch' : 'flex-start'
   },
   userInfoOnXs: {
     backgroundColor: theme.palette.secondary.dark,
@@ -26,8 +26,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BuildSong() {
+  const md = useMediaQuery('(max-width:680px)');
   const sm = useMediaQuery('(max-width:640px)');
   const xs = useMediaQuery('(max-width:599.95px)');
+  const xss = useMediaQuery('(max-width:415px)');
   const classes = useStyles(xs);
   const [activeLink, setActiveLink] = useState('skills');
 
@@ -94,6 +96,8 @@ export default function BuildSong() {
       <Box
         flexGrow={2}
         flexShrink={1}
+        mr={xs ? 0 : sm ? 4 : md ? 5 : 8}
+        {...xs ? { mx: xss ? 2 : 5 } : {}}
       >
         {
           activeLink === 'skills' ?
