@@ -97,7 +97,9 @@ export default function BuildSong() {
         flexGrow={2}
         flexShrink={1}
         mr={xs ? 0 : sm ? 4 : md ? 5 : 8}
-        {...xs ? { mx: xss ? 2 : 5 } : {}}
+        {...xs ? { mx: xss ? 2.5 : 5 } : {}}
+        pt={xss ? 3.5 : xs ? 4.5 : 5.5}
+        pb={xss ? 4 : 7}
       >
         {
           activeLink === 'skills' ?

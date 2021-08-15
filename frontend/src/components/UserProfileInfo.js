@@ -26,15 +26,15 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   userInfo: {
-    paddingBottom: mediaQueries => mediaQueries.xs ? '3.5rem' : '4rem',
+    paddingBottom: mediaQueries => mediaQueries.xss ? '2.6rem' : mediaQueries.xs ? '3.5rem' : '4rem',
     paddingTop: mediaQueries => mediaQueries.xs ? 52 : 72,
     backgroundColor: mediaQueries => mediaQueries.xs ? '#ffffff' : 'transparent',
     borderBottomLeftRadius: mediaQueries => mediaQueries.xs ? 40 : 0,
     borderBottomRightRadius: mediaQueries => mediaQueries.xs ? 40 : 0
   },
   userNav: {
-    paddingBottom: mediaQueries => mediaQueries.xs ? 15 : 72,
-    paddingTop: mediaQueries => mediaQueries.xs ? 13 : 0,
+    paddingBottom: mediaQueries => mediaQueries.xss ? 10 : mediaQueries.xs ? 15 : 72,
+    paddingTop: mediaQueries => mediaQueries.xss ? 8 : mediaQueries.xs ? 13 : 0,
   },
   navListItem: {
     width: mediaQueries => mediaQueries.xs ? 'auto' : '100%',
@@ -60,6 +60,11 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.15rem',
     }
   },
+  iwtTextSizeXss: {
+    '& > *': {
+      fontSize: '0.95rem',
+    }
+  },
   userIcon: {
     marginTop: '-3px'
   },
@@ -77,9 +82,11 @@ export default function UserProfileInfo({ userPhoto, fullName, setActiveLink, pr
 
   const sm = useMediaQuery('(max-width:640px)');
   const xs = useMediaQuery('(max-width:599.95px)');
+  const xss = useMediaQuery('(max-width:430px)');
   const mediaQueries = {
     sm,
-    xs
+    xs,
+    xss
   };
   const classes = useStyles(mediaQueries);
 
@@ -113,7 +120,7 @@ export default function UserProfileInfo({ userPhoto, fullName, setActiveLink, pr
           centered
           alt="artist photo"
           aria-label="artist photo"
-          size={xs ? 150 : sm ? 115 : 136}
+          size={xss ? 138 : xs ? 150 : sm ? 115 : 136}
         />
         <IWT
           centered
@@ -121,11 +128,11 @@ export default function UserProfileInfo({ userPhoto, fullName, setActiveLink, pr
           text={fullName}
           customStyles={classes.iwt}
           textWeightRule={classes.weight600}
-          {...sm ? { textSizeRule: xs ? classes.iwtTextSizeXs : classes.iwtTextSize } : {}}
+          {...sm ? { textSizeRule: xss ? classes.iwtTextSizeXss : xs ? classes.iwtTextSizeXs : classes.iwtTextSize } : {}}
         >
           <GitHubIcon
             color="primary"
-            className={`${classes.userIcon} ${sm && !xs ? classes.smallIcon : ''}`}
+            className={`${classes.userIcon} ${(sm && !xs) || xss ? classes.smallIcon : ''}`}
           />
         </IWT>
       </Box>

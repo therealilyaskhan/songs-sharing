@@ -24,11 +24,11 @@ const useStyles = makeStyles({
 });
 
 export default function UserSkillsScreen({ skills, userFullName }) {
-
+  const xss = useMediaQuery('(max-width:430px)');
   const classes = useStyles();
 
   return (
-    <Box pt={5.5} pb={7}>
+    <Box>
       <CardContainer
         elevation={3}
         br={35}
@@ -44,9 +44,9 @@ export default function UserSkillsScreen({ skills, userFullName }) {
       >
         <CardContentSimple
           pt={30}
-          pr={40}
+          pr={xss ? 32 : 40}
           pb={40}
-          pl={40}
+          pl={xss ? 32 : 40}
           customStyles={classes.flexColumn}
         >
           <Typography
