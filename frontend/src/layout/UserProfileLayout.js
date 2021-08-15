@@ -10,17 +10,25 @@ import UserSongsScreen from '../screens/UserSongsScreen';
 import Photo from '../assets/images/user_img.jpg';
 import { useMediaQuery } from '@material-ui/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#F7F7F7",
     width: "100%",
-    display: 'flex'
+    display: 'flex',
+    flexDirection: xs => xs ? 'column' : 'row',
+    alignItems: xs => xs ? 'center' : 'flex-start'
+  },
+  userInfoOnXs: {
+    backgroundColor: theme.palette.secondary.dark,
+    borderBottomRightRadius: 40,
+    borderBottomLeftRadius: 40,
   }
-});
+}));
 
 export default function BuildSong() {
-  const classes = useStyles();
   const sm = useMediaQuery('(max-width:640px)');
+  const xs = useMediaQuery('(max-width:599.95px)');
+  const classes = useStyles(xs);
   const [activeLink, setActiveLink] = useState('skills');
 
   //fetch user data from api endpoint
@@ -69,9 +77,10 @@ export default function BuildSong() {
     <Box className={classes.root}>
 
       <Box
+        {...xs ? { className: classes.userInfoOnXs } : {}}
         flexGrow={1}
         flexShrink={1}
-        minWidth={sm ? '200px' : '240px'}
+        minWidth={xs ? '100%' : sm ? '200px' : '240px'}
         maxWidth='320px'
       >
         <UserProfileInfo

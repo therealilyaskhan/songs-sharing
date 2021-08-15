@@ -12,9 +12,9 @@ import IWT from './IWT';
 
 const useStyles = makeStyles((theme) => ({
   listItemText: {
-    fontSize: sm => sm ? '1.1rem' : '1.2rem',
+    fontSize: mediaQueries => mediaQueries.sm ? '1.1rem' : '1.2rem',
     fontWeight: 700,
-    color: '#C7C7C7',
+    color: mediaQueries => mediaQueries.xs ? '#f1f1f1' : '#C7C7C7',
     textTransform: 'capitalize'
   },
   iwt: {
@@ -25,20 +25,39 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: 600
     }
   },
-  userNav: {
-    marginTop: '4rem'
+  userInfo: {
+    paddingBottom: mediaQueries => mediaQueries.xs ? '3.5rem' : '4rem',
+    paddingTop: mediaQueries => mediaQueries.xs ? 52 : 72,
+    backgroundColor: mediaQueries => mediaQueries.xs ? '#ffffff' : 'transparent',
+    borderBottomLeftRadius: mediaQueries => mediaQueries.xs ? 40 : 0,
+    borderBottomRightRadius: mediaQueries => mediaQueries.xs ? 40 : 0
   },
-  listItem: {
+  userNav: {
+    paddingBottom: mediaQueries => mediaQueries.xs ? 15 : 72,
+    paddingTop: mediaQueries => mediaQueries.xs ? 13 : 0,
+  },
+  navListItem: {
+    width: mediaQueries => mediaQueries.xs ? 'auto' : '100%',
     textAlign: 'center',
     paddingTop: 1,
     paddingBottom: 1,
     '&:active > * > *, &:focus > * > *': {
       color: '#0F94EC'
-    }
+    },
+    '&:active, &:focus': {
+      backgroundColor: mediaQueries => mediaQueries.xs ? '#ffffff' : 'transparent'
+    },
+    borderRadius: 50,
+    marginRight: mediaQueries => mediaQueries.xs ? 8 : 0
   },
   iwtTextSize: {
     '& > *': {
       fontSize: '0.85rem',
+    }
+  },
+  iwtTextSizeXs: {
+    '& > *': {
+      fontSize: '1.15rem',
     }
   },
   userIcon: {
@@ -47,20 +66,29 @@ const useStyles = makeStyles((theme) => ({
   smallIcon: {
     width: '1.1rem',
     height: 'auto'
+  },
+  navList: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 }));
 
 export default function UserProfileInfo({ userPhoto, fullName, setActiveLink, profileNavs }) {
 
   const sm = useMediaQuery('(max-width:640px)');
-  const classes = useStyles(sm);
+  const xs = useMediaQuery('(max-width:599.95px)');
+  const mediaQueries = {
+    sm,
+    xs
+  };
+  const classes = useStyles(mediaQueries);
 
   const navs = (
-    <List>
+    <List className={xs ? classes.navList : ''}>
       {profileNavs.map((text) => (
         <ListItem
           key={text}
-          className={classes.listItem}
+          className={classes.navListItem}
           onClick={() => { setActiveLink(text.toLocaleLowerCase()); }}
           button
           disableRipple
@@ -78,14 +106,14 @@ export default function UserProfileInfo({ userPhoto, fullName, setActiveLink, pr
 
 
   return (
-    <Box py={9}>
-      <Box>
+    <Box>
+      <Box className={classes.userInfo}>
         <CardAvatarResponsive
           src={userPhoto}
           centered
           alt="artist photo"
           aria-label="artist photo"
-          size={sm ? 115 : 136}
+          size={xs ? 150 : sm ? 115 : 136}
         />
         <IWT
           centered
@@ -93,11 +121,11 @@ export default function UserProfileInfo({ userPhoto, fullName, setActiveLink, pr
           text={fullName}
           customStyles={classes.iwt}
           textWeightRule={classes.weight600}
-          {...sm ? { textSizeRule: classes.iwtTextSize } : {}}
+          {...sm ? { textSizeRule: xs ? classes.iwtTextSizeXs : classes.iwtTextSize } : {}}
         >
           <GitHubIcon
             color="primary"
-            className={`${classes.userIcon} ${sm ? classes.smallIcon : ''}`}
+            className={`${classes.userIcon} ${sm && !xs ? classes.smallIcon : ''}`}
           />
         </IWT>
       </Box>
