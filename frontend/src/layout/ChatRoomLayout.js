@@ -7,7 +7,6 @@ import ChatRoomScreen from '../screens/ChatRoomScreen';
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: "#F7F7F7",
     width: '100%',
     display: 'flex'
   }

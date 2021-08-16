@@ -59,7 +59,7 @@ export default function ArtistSkillItem({ skill }) {
 
   return (
     <Box
-      key={skill.skillName}
+      key={skill.name}
       className={classes.skillItem}
       display='flex'
       justifyContent='space-between'
@@ -67,7 +67,7 @@ export default function ArtistSkillItem({ skill }) {
     >
       <IWT
         endIcon
-        text={skill.skillName}
+        text={skill.name}
         textSizeRule={classes.iwtTextSize}
         textWeightRule={classes.iwtWeight600}
         mrText={20}

@@ -12,7 +12,6 @@ import { useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#F7F7F7",
     width: "100%",
     display: 'flex',
     flexDirection: xs => xs ? 'column' : 'row',
@@ -39,35 +38,40 @@ export default function BuildSong() {
     fullName: 'David Gilmour',
     skills: [
       {
-        skillName: 'guitar',
+        name: 'guitar',
         kudos: 335,
       },
       {
-        skillName: 'bass',
+        name: 'bass',
         kudos: 335,
       },
       {
-        skillName: 'drum',
+        name: 'drum',
         kudos: 335,
       },
       {
-        skillName: 'piano',
+        name: 'piano',
         kudos: 335,
       },
       {
-        skillName: 'keyboard',
+        name: 'keyboard',
         kudos: 335,
       },
       {
-        skillName: 'xylophone',
+        name: 'xylophone',
         kudos: 335,
       },
       {
-        skillName: 'Adobe XD',
+        name: 'Adobe XD',
         kudos: 335,
       },
     ],
-    songs: []
+    songs: [
+      {
+        name: 'Dancehall Tokyo',
+        kudos: 125,
+      }
+    ]
   };
 
   const profileNavs = [
@@ -105,7 +109,7 @@ export default function BuildSong() {
           activeLink === 'skills' ?
             <UserSkillsScreen skills={user.skills} userFullName={user.fullName} /> :
             activeLink === 'songs' ?
-              <UserSongsScreen /> :
+              <UserSongsScreen songs={user.songs} userFullName={user.fullName} /> :
               null
         }
       </Box>

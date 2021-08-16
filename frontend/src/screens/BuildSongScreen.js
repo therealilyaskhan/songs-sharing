@@ -12,7 +12,6 @@ import SubmissionScreen from './SubmissionsScreen';
 
 const useStyles = makeStyles({
   screen: {
-    backgroundColor: "#F7F7F7",
     width: "100%"
   }
 });

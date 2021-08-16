@@ -10,7 +10,7 @@ import ArtistSkillItem from '../components/ArtistSkillItem';
 
 const useStyles = makeStyles({
   cardMinHeight: {
-    minHeight: 400
+    minHeight: 475
   },
   flexColumn: {
     display: 'flex',
