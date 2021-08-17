@@ -1,7 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Typography from '@material-ui/core/Typography';
 import { lightBlue } from '@material-ui/core/colors';
 
@@ -33,10 +32,6 @@ const useStyles = makeStyles({
 });
 
 export default function Message({ msg }) {
-
-  const md = useMediaQuery('(max-width:650px)'); //75%
-  const sm = useMediaQuery('(max-width:620px)'); //70%
-  const xs = useMediaQuery('(max-width:599.95px)'); //75%
 
   const classes = useStyles();
 

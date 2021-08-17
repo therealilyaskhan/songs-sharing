@@ -1,5 +1,4 @@
-import React, { useState, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
@@ -9,7 +8,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Box, Divider, useMediaQuery } from '@material-ui/core';
+import { useMediaQuery } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -65,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
+export default function GenresDrawer({ genresDrawerLinks, setActiveDrawerLink }) {
 
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -77,71 +76,30 @@ export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
 
   const drawer = (
     <List>
-      <ListItem>
-        <Box pl={2} mt={1}>
-          <Typography variant='h5' component='h2'>
-            <Link
-              to='/build'
-              className={classes.homeLink}
-            >
-              XYZ.DEV
-            </Link>
-          </Typography>
-        </Box>
-      </ListItem>
       {
-
-        Object.keys(chatRooms).map((category) => {
-
+        genresDrawerLinks.map((link) => {
           return (
-            <Fragment key={category}>
-              <ListItem>
-                <List
-                  className={classes.roomsList}
-                >
-                  <ListItem>
-                    <ListItemText
-                      className={classes.listItemText}
-                      classes={{
-                        primary: classes.roomCategory
-                      }}
-                      primary={`${category} rooms`}
-                    />
-                  </ListItem>
-                  {
-                    chatRooms[category].map(({ ID, name }) => {
-                      return (
-                        <ListItem
-                          key={ID}
-                          onClick={() => {
-                            setSelectedChatRoom(ID);
-                            if (xs)
-                              handleDrawerToggle();
-                          }}
-                          button
-                          classes={{
-                            button: classes.listItemButton
-                          }}
-                        >
-                          <ListItemText
-                            className={`${classes.listItemText}`}
-                            classes={{
-                              primary: classes.link
-                            }}
-                            primary={`# ${name}`} />
-                        </ListItem>
-                      );
-                    })
-                  }
-                </List>
-              </ListItem>
-
-              <Divider variant='middle' className={classes.divider} />
-            </Fragment>
+            <ListItem
+              key={link}
+              onClick={() => {
+                setActiveDrawerLink(link.toLocaleLowerCase());
+                if (xs)
+                  handleDrawerToggle();
+              }}
+              button
+              classes={{
+                button: classes.listItemButton
+              }}
+            >
+              <ListItemText
+                className={`${classes.listItemText}`}
+                classes={{
+                  primary: classes.link
+                }}
+                primary={link} />
+            </ListItem>
           );
-
         })
-
       }
     </List>
   );
@@ -160,7 +118,7 @@ export default function ChatRoomDrawer({ chatRooms, setSelectedChatRoom }) {
         <MenuIcon />
       </IconButton>
 
-      <nav className={classes.drawer} aria-label="chat rooms list">
+      <nav className={classes.drawer} aria-label="genres">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer

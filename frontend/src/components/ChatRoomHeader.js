@@ -59,9 +59,9 @@ export default function ChatRoomHeader({ chatRoomID, className }) {
 
   //run fetch query to fetch chatRoom name, members, checklist via chatRoomID
   let name;
-  const members = [
-    'Kannaj', 'Ilyas', 'Peter', 'David', 'Kathrine', 'Bella'
-  ];
+  // const members = [
+  //   'Kannaj', 'Ilyas', 'Peter', 'David', 'Kathrine', 'Bella'
+  // ];
 
   switch (chatRoomID) {
     case 2:

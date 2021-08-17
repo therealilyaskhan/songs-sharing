@@ -1,9 +1,12 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import BuildSongScreen from './screens/BuildSongScreen';
 import { ThemeProvider } from '@material-ui/core/styles';
+
 import Topbar from './components/Topbar';
 import UserProfileLayout from './layout/UserProfileLayout';
 import ChatRoomLayout from './layout/ChatRoomLayout';
+import GenresLayout from './layout/GenresLayout';
+
 import theme from './theme/theme';
 
 function App() {
@@ -18,6 +21,10 @@ function App() {
           <Route path="/profile">
             <Topbar />
             <UserProfileLayout />
+          </Route>
+          <Route path="/genres">
+            <Topbar />
+            <GenresLayout />
           </Route>
           <Route path="/rooms">
             <ChatRoomLayout />
