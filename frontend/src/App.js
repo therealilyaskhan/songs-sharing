@@ -23,7 +23,7 @@ function App() {
             <UserProfileLayout />
           </Route>
           <Route path="/genres">
-            <Topbar />
+            <Topbar sticky responsive />
             <GenresLayout />
           </Route>
           <Route path="/rooms">

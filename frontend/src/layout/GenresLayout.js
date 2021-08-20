@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
-import GenresDrawer from '../components/GenresDrawer';
 import ExploreGenresScreen from '../screens/ExploreGenresScreen';
 import SubscribedGenresScreen from '../screens/SubscribedGenresScreen';
+
+import GenresDrawer from '../components/GenresDrawer';
+import GenresAppBar from '../components/GenresAppBar';
 
 import Image from '../assets/images/user_img.jpg';
 
@@ -16,8 +18,6 @@ const useStyles = makeStyles({
 });
 
 export default function GenreLayout() {
-  const classes = useStyles();
-  const [activeDrawerLink, setActiveDrawerLink] = useState('');
 
   //fetch the the navlinks for the Genres drawer from api endpoint:
   const genresDrawerLinks = [
@@ -75,19 +75,28 @@ export default function GenreLayout() {
     }
   ];
 
+  const classes = useStyles();
+  const [activeDrawerLink, setActiveDrawerLink] = useState('explore');
+  // const [topBarHeight, setTopBarHeight] = useState(0);
+  // const [appBarHeight, setAppBarHeight] = useState(0);
+
   return (
-    <Box className={classes.root}>
-      <GenresDrawer
-        genresDrawerLinks={genresDrawerLinks}
-        setActiveDrawerLink={setActiveDrawerLink}
-      />
-      {
-        activeDrawerLink === 'explore' ?
-          <ExploreGenresScreen genres={exploreGenres} /> :
-          activeDrawerLink === 'subscribed' ?
-            <SubscribedGenresScreen genres={subscribedGenres} /> :
-            null
-      }
-    </Box>
+    <Box>
+      <GenresAppBar />
+      <Box className={classes.root}>
+        <GenresDrawer
+          genresDrawerLinks={genresDrawerLinks}
+          activeDrawerLink={activeDrawerLink}
+          setActiveDrawerLink={setActiveDrawerLink}
+        />
+        {
+          activeDrawerLink === 'explore' ?
+            <ExploreGenresScreen genres={exploreGenres} /> :
+            activeDrawerLink === 'subscribed' ?
+              <SubscribedGenresScreen genres={subscribedGenres} /> :
+              null
+        }
+      </Box>
+    </Box >
   );
 }

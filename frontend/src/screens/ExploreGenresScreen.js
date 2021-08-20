@@ -1,6 +1,6 @@
 export default function ExploreGenresScreen({ genres }) {
   return (
-    <div>
+    <div style={{ minHeight: '2000px' }}>
       explore Genres
     </div>
   );

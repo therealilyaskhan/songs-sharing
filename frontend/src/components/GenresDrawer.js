@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
@@ -20,8 +20,17 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
   },
   link: {
-    color: '#fff',
-    fontSize: '0.92rem'
+    color: '#C7C7C7',
+    fontSize: '1.15rem',
+    fontWeight: 600,
+    textTransform: 'capitalize'
+  },
+  navTitle: {
+    letterSpacing: '.2px',
+    color: '#000',
+    fontSize: '1.5rem',
+    fontWeight: 600,
+    textTransform: 'capitalize'
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -33,14 +42,23 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
-    position: 'absolute',
+    position: 'fixed',
     top: 4,
     left: 20,
     zIndex: 1200
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: '#000'
+    paddingLeft: '.8rem',
+    paddingTop: '2rem',
+    backgroundColor: '#f7f7f7',
+    borderRight: 'none',
+    boxSizing: 'border-box',
+  },
+  desktopDrawerPaper: {
+    top: 185,
+    alignItems: 'center',
+    position: 'static'
   },
   roomCategory: {
     fontSize: '0.97rem',
@@ -50,6 +68,14 @@ const useStyles = makeStyles((theme) => ({
   listItemText: {
     marginTop: 0,
     marginBottom: 0
+  },
+  active: {
+    '& > *': {
+      color: '#0F94EC'
+    }
+  },
+  cursorPointer: {
+    cursor: 'pointer'
   },
   divider: {
     backgroundColor: 'rgba(255, 255, 255, 0.10);'
@@ -64,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function GenresDrawer({ genresDrawerLinks, setActiveDrawerLink }) {
+export default function GenresDrawer({ genresDrawerLinks, activeDrawerLink, setActiveDrawerLink }) {
 
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -74,25 +100,42 @@ export default function GenresDrawer({ genresDrawerLinks, setActiveDrawerLink })
     setMobileOpen(!mobileOpen);
   };
 
+  useEffect(() => {
+    document.addEventListener('scroll', function () {
+      let scrollTop =
+        document.documentElement['scrollTop'] || document.body['scrollTop'];
+      if (scrollTop > 83.151)
+        document
+          .getElementById('genre-drawer')
+          .style.cssText = "position: fixed; top: 93.993px";
+      else
+        document
+          .getElementById('genre-drawer')
+          .style.cssText = "position: static; top: 185px";
+    });
+  }, []);
+
   const drawer = (
     <List>
+      <ListItem>
+        <ListItemText
+          className={`${classes.listItemText}`}
+          classes={{
+            primary: classes.navTitle
+          }}
+          primary='Genres' />
+      </ListItem>
       {
         genresDrawerLinks.map((link) => {
           return (
-            <ListItem
-              key={link}
-              onClick={() => {
-                setActiveDrawerLink(link.toLocaleLowerCase());
-                if (xs)
-                  handleDrawerToggle();
-              }}
-              button
-              classes={{
-                button: classes.listItemButton
-              }}
-            >
+            <ListItem key={link}>
               <ListItemText
-                className={`${classes.listItemText}`}
+                className={`${classes.listItemText} ${classes.cursorPointer} ${activeDrawerLink === link ? classes.active : ''}`}
+                onClick={() => {
+                  setActiveDrawerLink(link.toLocaleLowerCase());
+                  if (xs)
+                    handleDrawerToggle();
+                }}
                 classes={{
                   primary: classes.link
                 }}
@@ -122,6 +165,7 @@ export default function GenresDrawer({ genresDrawerLinks, setActiveDrawerLink })
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
+
             variant="temporary"
             open={mobileOpen}
             onClose={handleDrawerToggle}
@@ -137,8 +181,9 @@ export default function GenresDrawer({ genresDrawerLinks, setActiveDrawerLink })
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer
+            id='genre-drawer'
             classes={{
-              paper: `${classes.drawerPaper}`
+              paper: `${classes.drawerPaper} ${classes.desktopDrawerPaper}`
             }}
             variant="permanent"
             open

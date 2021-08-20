@@ -8,7 +8,12 @@ import StyledButton from './controls/StyledButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#fdfdfd'
+    backgroundColor: '#fdfdfd',
+  },
+  sticky: {
+    position: 'sticky',
+    top: 0,
+    zIndex: 200
   },
   title: {
     flexGrow: 1
@@ -41,14 +46,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Topbar({ responsive }) {
+export default function Topbar({ responsive, sticky }) {
   const classes = useStyles();
   const xs = useMediaQuery('(max-width:599.95px)');
 
   return (
-    <Box px={xs ? 2.5 : 5} className={classes.root}>
+    <Box px={xs ? 2.5 : 5} className={`${classes.root} ${sticky ? classes.sticky : ''}`}>
       <AppBar
-        position="static"
+        position='static'
         elevation={0}
         color="transparent"
       >
