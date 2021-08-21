@@ -108,23 +108,30 @@ export default function GenresDrawer({ genresDrawerLinks, activeDrawerLink, setA
   const classes = useStyles(mediaQueries);
 
   const [mobileOpen, setMobileOpen] = useState(false);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const stickyDrawerHandler = function () {
+    let scrollTop =
+      document.documentElement['scrollTop'] || document.body['scrollTop'];
+    if (scrollTop >= 113.578)
+      document
+        .getElementById('genre-drawer')
+        .style.cssText = "position: fixed; top: 64px";
+    else
+      document
+        .getElementById('genre-drawer')
+        .style.cssText = "position: static";
+  };
+
   useEffect(() => {
-    document.addEventListener('scroll', function () {
-      let scrollTop =
-        document.documentElement['scrollTop'] || document.body['scrollTop'];
-      if (scrollTop >= 113.578)
-        document
-          .getElementById('genre-drawer')
-          .style.cssText = "position: fixed; top: 64px";
-      else
-        document
-          .getElementById('genre-drawer')
-          .style.cssText = "position: static";
-    });
+    document.addEventListener('scroll', stickyDrawerHandler);
+
+    return function () {
+      document.removeEventListener('scroll', stickyDrawerHandler);
+    };
   }, []);
 
   const drawer = (
