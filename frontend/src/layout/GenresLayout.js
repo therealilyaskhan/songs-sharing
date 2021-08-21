@@ -8,8 +8,6 @@ import SubscribedGenresScreen from '../screens/SubscribedGenresScreen';
 import GenresDrawer from '../components/GenresDrawer';
 import GenresAppBar from '../components/GenresAppBar';
 
-import Image from '../assets/images/user_img.jpg';
-
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -25,60 +23,8 @@ export default function GenreLayout() {
     'subscribed'
   ];
 
-  //fetch the list of genres a user can explore
-  const exploreGenres = [
-    {
-      ID: 1,
-      title: 'lorem ipsum',
-      category: 'web',
-      image: Image,
-      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it."
-    },
-    {
-      ID: 2,
-      title: 'lorem ipsum',
-      category: 'web',
-      image: Image,
-      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it."
-    },
-    {
-      ID: 3,
-      title: 'lorem ipsum',
-      category: 'web',
-      image: Image,
-      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it."
-    },
-    {
-      ID: 4,
-      title: 'lorem ipsum',
-      category: 'web',
-      image: Image,
-      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it."
-    },
-  ];
-
-  //fetch the list of genres a user has subscribed to
-  const subscribedGenres = [
-    {
-      ID: 5,
-      title: 'lorem ipsum',
-      category: 'web',
-      image: Image,
-      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it."
-    },
-    {
-      ID: 6,
-      title: 'lorem ipsum',
-      category: 'web',
-      image: Image,
-      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it."
-    }
-  ];
-
   const classes = useStyles();
   const [activeDrawerLink, setActiveDrawerLink] = useState('explore');
-  // const [topBarHeight, setTopBarHeight] = useState(0);
-  // const [appBarHeight, setAppBarHeight] = useState(0);
 
   return (
     <Box>
@@ -91,9 +37,9 @@ export default function GenreLayout() {
         />
         {
           activeDrawerLink === 'explore' ?
-            <ExploreGenresScreen genres={exploreGenres} /> :
+            <ExploreGenresScreen /> :
             activeDrawerLink === 'subscribed' ?
-              <SubscribedGenresScreen genres={subscribedGenres} /> :
+              <SubscribedGenresScreen /> :
               null
         }
       </Box>

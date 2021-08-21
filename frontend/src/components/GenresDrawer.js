@@ -10,8 +10,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
   homeLink: {
     color: '#fff',
@@ -34,9 +32,9 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
+      width: mediaQueries => (mediaQueries.sm && !mediaQueries.xs) ? 200 : mediaQueries.md ? 225 : mediaQueries.lg ? 240 : 270
     },
+    flexShrink: 0
   },
   menuButton: {
     [theme.breakpoints.up('sm')]: {
@@ -48,17 +46,20 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1200
   },
   drawerPaper: {
-    width: drawerWidth,
-    paddingLeft: '.8rem',
-    paddingTop: '2rem',
+    width: 240,
+    paddingLeft: '1.2rem',
     backgroundColor: '#f7f7f7',
+    [theme.breakpoints.up('sm')]: {
+      width: mediaQueries => (mediaQueries.sm && !mediaQueries.xs) ? 200 : mediaQueries.md ? 225 : mediaQueries.lg ? 240 : 270,
+      top: 185,
+      alignItems: mediaQueries => mediaQueries.sm ? 'flex-start' : 'center',
+      position: 'static',
+      paddingLeft: mediaQueries => !mediaQueries.sm ? '0.6rem' : '1.2rem',
+      backgroundColor: 'transparent'
+    },
+    paddingTop: '2.5rem',
     borderRight: 'none',
     boxSizing: 'border-box',
-  },
-  desktopDrawerPaper: {
-    top: 185,
-    alignItems: 'center',
-    position: 'static'
   },
   roomCategory: {
     fontSize: '0.97rem',
@@ -92,10 +93,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function GenresDrawer({ genresDrawerLinks, activeDrawerLink, setActiveDrawerLink }) {
 
-  const classes = useStyles();
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const lg = useMediaQuery('(max-width:1288px)');
+  const md = useMediaQuery('(max-width:960px)');
+  const sm = useMediaQuery('(max-width:660px)');
   const xs = useMediaQuery('(max-width:599.95px)');
 
+  const mediaQueries = {
+    lg,
+    md,
+    sm,
+    xs
+  };
+
+  const classes = useStyles(mediaQueries);
+
+  const [mobileOpen, setMobileOpen] = useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -104,14 +116,14 @@ export default function GenresDrawer({ genresDrawerLinks, activeDrawerLink, setA
     document.addEventListener('scroll', function () {
       let scrollTop =
         document.documentElement['scrollTop'] || document.body['scrollTop'];
-      if (scrollTop > 83.151)
+      if (scrollTop >= 113.578)
         document
           .getElementById('genre-drawer')
-          .style.cssText = "position: fixed; top: 93.993px";
+          .style.cssText = "position: fixed; top: 64px";
       else
         document
           .getElementById('genre-drawer')
-          .style.cssText = "position: static; top: 185px";
+          .style.cssText = "position: static";
     });
   }, []);
 
