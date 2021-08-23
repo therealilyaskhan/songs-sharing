@@ -61,7 +61,7 @@ export default function UserSongsScreen({ songs, userFullName }) {
             {
               songs.map((song) => {
                 return (
-                  <ArtistSkillItem skill={song} />
+                  <ArtistSkillItem key={song.name} skill={song} />
                 );
               })
             }

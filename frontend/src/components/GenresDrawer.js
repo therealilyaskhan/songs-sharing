@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
-      width: mediaQueries => (mediaQueries.sm && !mediaQueries.xs) ? 200 : mediaQueries.md ? 225 : mediaQueries.lg ? 240 : 270
+      width: mediaQueries => (mediaQueries.max660 && !mediaQueries.xs) ? 200 : mediaQueries.max680 ? 220 : mediaQueries.max900 ? 240 : mediaQueries.max960 ? 225 : mediaQueries.max1288 ? 240 : 270
     },
     flexShrink: 0
   },
@@ -50,11 +50,11 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '1.2rem',
     backgroundColor: '#f7f7f7',
     [theme.breakpoints.up('sm')]: {
-      width: mediaQueries => (mediaQueries.sm && !mediaQueries.xs) ? 200 : mediaQueries.md ? 225 : mediaQueries.lg ? 240 : 270,
+      width: mediaQueries => (mediaQueries.max660 && !mediaQueries.xs) ? 200 : mediaQueries.max960 ? 225 : mediaQueries.max1288 ? 240 : 270,
       top: 185,
-      alignItems: mediaQueries => mediaQueries.sm ? 'flex-start' : 'center',
+      alignItems: mediaQueries => mediaQueries.max660 ? 'flex-start' : 'center',
       position: 'static',
-      paddingLeft: mediaQueries => !mediaQueries.sm ? '0.6rem' : '1.2rem',
+      paddingLeft: mediaQueries => !mediaQueries.max660 ? '0.6rem' : '1.2rem',
       backgroundColor: 'transparent'
     },
     paddingTop: '2.5rem',
@@ -93,15 +93,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function GenresDrawer({ genresDrawerLinks, activeDrawerLink, setActiveDrawerLink }) {
 
-  const lg = useMediaQuery('(max-width:1288px)');
-  const md = useMediaQuery('(max-width:960px)');
-  const sm = useMediaQuery('(max-width:660px)');
+  const max1288 = useMediaQuery('(max-width:1288px)');
+  const max960 = useMediaQuery('(max-width:960px)');
+  const max900 = useMediaQuery('(max-width:900px)');
+  const max680 = useMediaQuery('(max-width:680px)');
+  const max660 = useMediaQuery('(max-width:660px)');
   const xs = useMediaQuery('(max-width:599.95px)');
 
   const mediaQueries = {
-    lg,
-    md,
-    sm,
+    max1288,
+    max960,
+    max900,
+    max680,
+    max660,
     xs
   };
 

@@ -3,40 +3,47 @@ import Box from '@material-ui/core/Box';
 
 import Image from '../assets/images/user_img.jpg';
 
-import GenreSubscribedCard from '../components/GenreSubscribedCard';
+import GenreExploreCard from '../components/GenreExploreCard';
 
 const useStyles = makeStyles({
   root: {
     flex: '1 1 auto',
-    padding: '2rem'
+    padding: '2rem',
   }
 });
 
-export default function SubscribedGenresScreen() {
+export default function GenreExploreScreen() {
 
-  //fetch the list of genres a user has subscribed to
+  //fetch the list of genres a user can explore
   const genres = [
     {
-      ID: 5,
+      ID: 1,
       title: 'lorem ipsum',
       category: 'web',
       image: Image,
       description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it."
     },
     {
-      ID: 6,
+      ID: 2,
       title: 'lorem ipsum',
       category: 'web',
       image: Image,
       description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it."
     },
     {
-      ID: 7,
+      ID: 3,
       title: 'lorem ipsum',
       category: 'web',
       image: Image,
       description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it."
-    }
+    },
+    {
+      ID: 4,
+      title: 'lorem ipsum',
+      category: 'web',
+      image: Image,
+      description: "I want to play high on fire with 12 musicians. lorem Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy text of the printing and typesetting industry. I want to play high on fire with 12 musicians and keep doing it."
+    },
   ];
 
   const classes = useStyles();
@@ -46,7 +53,7 @@ export default function SubscribedGenresScreen() {
       {
         genres.map((genre) => {
           return (
-            <GenreSubscribedCard key={genre.ID} genre={genre} />
+            <GenreExploreCard key={genre.ID} genre={genre} />
           );
         })
       }

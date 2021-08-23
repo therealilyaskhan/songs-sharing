@@ -22,9 +22,11 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 220
   },
   flexColumn: {
-    flex: mediaQueries => mediaQueries.md ? '8 1 0' : mediaQueries.lg ? '6 1 0' : '4 1 0',
     display: 'flex',
     flexDirection: 'column'
+  },
+  flexGrow: {
+    flex: mediaQueries => mediaQueries.max960 ? '8 1 0' : mediaQueries.max1035 ? '6 1 0' : '4 1 0'
   },
   border: {
     border: '1px solid #707070'
@@ -41,20 +43,26 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: '.4rem'
     }
   },
+  textCenter: {
+    textAlign: 'center'
+  }
 }));
 
 export default function GenreExploreCard({ genre }) {
   const { title, category, image, description } = genre;
 
-  const xl = useMediaQuery('(max-width:1060px)');
-  const lg = useMediaQuery('(max-width:1035px)');
-  const md = useMediaQuery('(max-width:960px)');
-  const sm = useMediaQuery('(max-width:900px)');
-  const xsCard = useMediaQuery('(max-width:470px)');
+  const max1060 = useMediaQuery('(max-width:1060px)');
+  const max1035 = useMediaQuery('(max-width:1035px)');
+  const max960 = useMediaQuery('(max-width:960px)');
+  const max950 = useMediaQuery('(max-width:950px)');
+  const max920 = useMediaQuery('(max-width:920px)');
+  const max780 = useMediaQuery('(max-width:780px)');
+  const max600 = useMediaQuery('(max-width:599.95px)');
+  const max520 = useMediaQuery('(max-width:520px)');
 
   const mediaQueries = {
-    lg,
-    md
+    max1035,
+    max960
   };
 
   const classes = useStyles(mediaQueries);
@@ -68,34 +76,56 @@ export default function GenreExploreCard({ genre }) {
       pt={0}
       pb={0}
       mt={0}
-      mr={sm ? 6 : md ? 10 : lg ? 28 : xl ? 36 : 50}
+      mr={max920 ? 6 : max960 ? 10 : max1035 ? 28 : max1060 ? 36 : 50}
       mb={20}
       ml={0}
       customStyles={classes.minHeight}
     >
-      <Box alignSelf='center' flexGrow={0} mr={5}>
-        <CardAvatarResponsive
-          src={image}
-          alt="genre image"
-          aria-label="genre image"
-          size={126}
-          centered
-          customStyles={classes.border}
-        />
-      </Box>
+      {
+        !max950
+          ?
+          <Box alignSelf='center' flexGrow={0} mr={5}>
+            <CardAvatarResponsive
+              src={image}
+              alt="genre image"
+              aria-label="genre image"
+              size={126}
+              centered
+              customStyles={classes.border}
+            />
+          </Box>
+          :
+          null
+      }
 
       <CardContentSimple
-        pt={lg ? 30 : 42}
+        pt={max1035 ? 30 : 42}
         pr={0}
-        pb={lg ? 30 : 42}
+        pb={max1035 ? 30 : 42}
         pl={0}
-        mr={sm ? 8 : 0}
-        customStyles={classes.flexColumn}
+        mr={max780 && (!max600 || max520) ? 0 : (4 * 8)}
+        customStyles={`${classes.flexColumn} ${max950 ? '' : classes.flexGrow}`}
       >
+        {
+          max950
+            ?
+            <Box>
+              <CardAvatarResponsive
+                src={image}
+                alt="genre image"
+                aria-label="genre image"
+                size={126}
+                centered
+                customStyles={classes.border}
+              />
+            </Box>
+            :
+            null
+        }
 
-        <Box mb={0.25}>
+        <Box mb={max950 ? 0 : 0.25} mt={max950 ? 0.3 : 0}>
           <Typography
-            className={classes.weightBold}
+            className={`${classes.weightBold} ${max950 ? classes.textCenter : ''}`}
             variant="h6"
             component="h4"
           >
@@ -104,26 +134,50 @@ export default function GenreExploreCard({ genre }) {
           <Typography
             variant="subtitle1"
             color='textSecondary'
-            className={`${classes.weightBold} ${classes.negMT}`}
+            className={`${classes.weightBold} ${classes.negMT} ${max950 ? classes.textCenter : ''}`}
           >
             {category}
           </Typography>
         </Box>
 
-        <Typography
-          color='textPrimary'
-          className={classes.weight400}
-        >
-          {description}
-        </Typography>
-      </CardContentSimple>
+        {
+          !max950 || (max780 && (!max600 || max520)) ?
+            <Box {...max780 && (!max600 || max520) ? { mt: 0.6, textAlign: 'center' } : {}}>
+              <Typography
+                color='textPrimary'
+                className={classes.weight400}
+              >
+                {description}
+              </Typography>
+            </Box> :
+            null
+        }
 
-      <Box
-        flexGrow={sm ? 0 : 1}
-        flexShrink={3}
-        flexBasis={0}
-      >
-      </Box>
+      </CardContentSimple>
+      {
+        !max780 || (max600 && !max520)
+          ?
+          <Box
+            flexGrow={1}
+            flexShrink={3}
+            flexBasis={0}
+            my='2rem'
+          >
+            {
+              max950 ?
+                <Typography
+                  color='textPrimary'
+                  className={classes.weight400}
+                >
+                  {description}
+                </Typography>
+                :
+                null
+            }
+          </Box>
+          :
+          null
+      }
 
     </CardContainer >
   );

@@ -70,7 +70,7 @@ export default function ArtistSkillItem({ skill }) {
         text={skill.name}
         textSizeRule={classes.iwtTextSize}
         textWeightRule={classes.iwtWeight600}
-        mrText={20}
+        mrtext={20}
       >
         <ThumbUpIcon
           className={`${classes.thumb} ${liked ? classes.likedThumb : classes.notLikedThumb}`}

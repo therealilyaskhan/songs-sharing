@@ -37,25 +37,36 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '-6px'
   },
   cardButton: {
+    flexGrow: max950 => max950 ? 1 : 0,
     borderWidth: '3px',
     '&:hover': {
       borderWidth: '3px'
     },
     '&:not(:last-child)': {
-      marginBottom: '.4rem'
+      marginBottom: max950 => max950 ? 0 : '.4rem',
+      marginRight: max950 => max950 ? '.6rem' : 0
     }
   },
+  floated: {
+    float: 'left',
+    shapeOutside: 'circle()',
+    marginRight: '3rem'
+  },
+  textCenter: {
+    textAlign: 'center'
+  }
 }));
 
 export default function GenreSubscribedCard({ genre }) {
-  const { title, category, image, description } = genre;
-  const classes = useStyles();
 
-  const xl = useMediaQuery('(max-width:1060px)');
-  const lg = useMediaQuery('(max-width:1035px)');
-  const md = useMediaQuery('(max-width:960px)');
-  const sm = useMediaQuery('(max-width:900px)');
-  const xsCard = useMediaQuery('(max-width:470px)');
+  const max1060 = useMediaQuery('(max-width:1060px)');
+  const max1035 = useMediaQuery('(max-width:1035px)');
+  const max960 = useMediaQuery('(max-width:960px)');
+  const max920 = useMediaQuery('(max-width:920px)');
+  const max950 = useMediaQuery('(max-width: 950px)');
+
+  const { title, category, image, description } = genre;
+  const classes = useStyles(max950);
 
   const todoHandler = (e) => {
     console.log('todo list!!');
@@ -73,32 +84,50 @@ export default function GenreSubscribedCard({ genre }) {
       pt={0}
       pb={0}
       mt={0}
-      mr={sm ? 6 : md ? 10 : lg ? 28 : xl ? 36 : 50}
+      mr={max920 ? 6 : max960 ? 10 : max1035 ? 28 : max1060 ? 36 : 50}
       mb={20}
       ml={0}
       customStyles={classes.minHeight}
     >
-      <Box alignSelf='center' flexGrow={0} mr={5}>
-        <CardAvatarResponsive
-          src={image}
-          alt="genre image"
-          aria-label="genre image"
-          size={126}
-          centered
-          customStyles={classes.border}
-        />
-      </Box>
+      {
+        !max950 ?
+          <Box alignSelf='center' flexGrow={0} mr={5}>
+            <CardAvatarResponsive
+              src={image}
+              alt="genre image"
+              aria-label="genre image"
+              size={126}
+              centered
+              customStyles={classes.border}
+            />
+          </Box> :
+          null
+      }
 
       <CardContentSimple
-        pt={lg ? 30 : 42}
+        pt={max1035 ? 30 : 42}
         pr={0}
-        pb={lg ? 30 : 42}
+        pb={max1035 ? 30 : 42}
         pl={0}
         mr={(4 * 8)}
-        customStyles={classes.flexColumn}
+        {...max950 ? {} : { customStyles: classes.flexColumn }}
       >
+        {
+          max950 ?
+            <Box>
+              <CardAvatarResponsive
+                src={image}
+                alt="genre image"
+                aria-label="genre image"
+                size={126}
+                centered
+                customStyles={classes.border}
+              />
+            </Box> :
+            null
+        }
 
-        <Box mb={0.25}>
+        <Box mt={0.3}>
           <Typography
             className={classes.weightBold}
             variant="h6"
@@ -109,60 +138,85 @@ export default function GenreSubscribedCard({ genre }) {
           <Typography
             variant="subtitle1"
             color='textSecondary'
-            className={`${classes.weightBold} ${classes.negMT}`}
+            className={`${classes.weightBold} ${max950 ? classes.textCenter : classes.negMT}`}
           >
             {category}
           </Typography>
         </Box>
 
-        <Typography
-          color='textPrimary'
-          className={classes.weight400}
-        >
-          {description}
-        </Typography>
+        {
+          !max950 ?
+            <Box>
+              <Typography
+                color='textPrimary'
+                className={classes.weight400}
+              >
+                {description}
+              </Typography>
+            </Box> :
+            null
+        }
+
       </CardContentSimple>
 
       <Box
         flexGrow={1}
         flexShrink={2}
         flexBasis={0}
-        display='flex'
-        flexDirection='column'
-        justifyContent='flex-end'
-        alignItems='flex-end'
         py={2.5}
+        {...max950 ? { display: 'flex', flexDirection: 'column', justifyContent: 'space-between' } : { mt: 'auto' }}
       >
-        <StyledButton
-          disableElevation
-          startIcon={<FormatListBulletedIcon />}
-          classes={{
-            startIcon: classes.btnStartIcon
-          }}
-          onClick={todoHandler}
-          variant="contained"
-          color="secondary"
-          style={{ color: '#fff' }}
-          customStyles={classes.cardButton}
+        {
+          max950 ?
+            <Box pt={.5}>
+              <Typography
+                color='textPrimary'
+                className={classes.weight400}
+              >
+                {description}
+              </Typography>
+            </Box>
+            :
+            null
+        }
+        <Box
+          display='flex'
+          flexDirection={max950 ? 'row' : 'column'}
+          justifyContent={max950 ? 'stretch' : 'flex-end'}
+          alignItems={max950 ? 'center' : 'flex-end'}
+          mt='1.1rem'
+          mb='0.5rem'
         >
-          Todo
-        </StyledButton>
-        <StyledButton
-          disableElevation
-          startIcon={<ChatBubbleOutlineOutlinedIcon />}
-          classes={{
-            startIcon: classes.btnStartIcon
-          }}
-          onClick={chatHandler}
-          variant="contained"
-          color="secondary"
-          style={{ color: '#fff' }}
-          customStyles={classes.cardButton}
-        >
-          Chat
-        </StyledButton>
+          <StyledButton
+            disableElevation
+            startIcon={<FormatListBulletedIcon />}
+            classes={{
+              startIcon: classes.btnStartIcon
+            }}
+            onClick={todoHandler}
+            variant="contained"
+            color="secondary"
+            style={{ color: '#fff' }}
+            customStyles={classes.cardButton}
+          >
+            Todo
+          </StyledButton>
+          <StyledButton
+            disableElevation
+            startIcon={<ChatBubbleOutlineOutlinedIcon />}
+            classes={{
+              startIcon: classes.btnStartIcon
+            }}
+            onClick={chatHandler}
+            variant="contained"
+            color="secondary"
+            style={{ color: '#fff' }}
+            customStyles={classes.cardButton}
+          >
+            Chat
+          </StyledButton>
+        </Box>
       </Box>
-
     </CardContainer >
   );
 };

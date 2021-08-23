@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
-import ExploreGenresScreen from '../screens/ExploreGenresScreen';
-import SubscribedGenresScreen from '../screens/SubscribedGenresScreen';
+import GenreExploreScreen from '../screens/GenreExploreScreen';
+import GenreSubscribedScreen from '../screens/GenreSubscribedScreen';
 
 import GenresDrawer from '../components/GenresDrawer';
 import GenresAppBar from '../components/GenresAppBar';
@@ -37,9 +37,9 @@ export default function GenreLayout() {
         />
         {
           activeDrawerLink === 'explore' ?
-            <ExploreGenresScreen /> :
+            <GenreExploreScreen /> :
             activeDrawerLink === 'subscribed' ?
-              <SubscribedGenresScreen /> :
+              <GenreSubscribedScreen /> :
               null
         }
       </Box>

@@ -61,7 +61,7 @@ export default function UserSkillsScreen({ skills, userFullName }) {
             {
               skills.map((skill) => {
                 return (
-                  <ArtistSkillItem skill={skill} />
+                  <ArtistSkillItem key={skill.name} skill={skill} />
                 );
               })
             }
