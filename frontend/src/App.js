@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import BuildSongScreen from './screens/BuildSongScreen';
+import BuildSongLayout from './layout/BuildSongLayout';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import Topbar from './components/Topbar';
@@ -16,7 +16,7 @@ function App() {
         <Switch>
           <Route path="/build">
             <Topbar />
-            <BuildSongScreen />
+            <BuildSongLayout />
           </Route>
           <Route path="/profile">
             <Topbar />

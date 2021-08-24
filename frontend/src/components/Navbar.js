@@ -9,43 +9,23 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1
   },
-  tab: {
+  nav: {
     margin: '0px 10px',
     paddingLeft: '20px',
-    paddingRight: '20px',
-    '&:active, &:focus': {
-      backgroundColor: theme.palette.secondary.main,
-      BorderColor: theme.palette.secondary.main,
-      color: '#fff',
-      '&:hover': {
-        backgroundColor: theme.palette.secondary.dark
-      }
+    paddingRight: '20px'
+  },
+  activeNav: {
+    backgroundColor: theme.palette.secondary.main,
+    BorderColor: theme.palette.secondary.main,
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.dark
     }
   }
 }));
 
-export default function Navbar({ setActiveTab }) {
+export default function Navbar({ navs, activeNav, setActiveNav }) {
   const classes = useStyles();
-
-  //fetch the tabs from api endpoint
-  const tabs = [
-    {
-      name: 'checklist',
-      path: '/checklist'
-    },
-    {
-      name: 'info',
-      path: '/info'
-    },
-    {
-      name: 'bands',
-      path: '/bands'
-    },
-    {
-      name: 'submission',
-      path: '/submission'
-    }
-  ];
 
   return (
     <Box>
@@ -63,16 +43,16 @@ export default function Navbar({ setActiveTab }) {
             Build a song
           </Typography>
           <Box mb={2} mt={0.5} display="flex" justifyContent='center' width="100%">
-            {tabs.map((tab) => (
+            {navs.map((nav) => (
               <StyledButton
                 disableElevation
                 size="large"
                 color="inherit"
-                key={tab.name}
-                customStyles={classes.tab}
-                onClick={() => { setActiveTab(tab.name.toLocaleLowerCase()); }}
+                key={nav.name}
+                customStyles={`${classes.nav} ${nav.name === activeNav ? classes.activeNav : ''}`}
+                onClick={() => { setActiveNav(nav.name.toLocaleLowerCase()); }}
               >
-                {tab.name}
+                {nav.name}
               </StyledButton>
             ))
             }

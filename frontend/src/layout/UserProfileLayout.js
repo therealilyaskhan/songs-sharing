@@ -25,13 +25,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BuildSong() {
-  const md = useMediaQuery('(max-width:680px)');
-  const sm = useMediaQuery('(max-width:640px)');
-  const xs = useMediaQuery('(max-width:599.95px)');
-  const xss = useMediaQuery('(max-width:415px)');
-  const classes = useStyles(xs);
-  const [activeLink, setActiveLink] = useState('skills');
-
   //fetch user data from api endpoint
   const user = {
     photo: Photo,
@@ -74,6 +67,13 @@ export default function BuildSong() {
     ]
   };
 
+  const md = useMediaQuery('(max-width:680px)');
+  const sm = useMediaQuery('(max-width:640px)');
+  const xs = useMediaQuery('(max-width:599.95px)');
+  const xss = useMediaQuery('(max-width:415px)');
+  const classes = useStyles(xs);
+  const [activeLink, setActiveLink] = useState('skills');
+
   const profileNavs = [
     'skills',
     'songs'
@@ -93,6 +93,7 @@ export default function BuildSong() {
           profileNavs={profileNavs}
           fullName={user.fullName}
           userPhoto={user.photo}
+          activeLink={activeLink}
           setActiveLink={setActiveLink}
         />
       </Box>
